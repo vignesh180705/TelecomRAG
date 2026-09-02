@@ -1,0 +1,12 @@
+llama-index
+llama-index-llms-openai
+llama-index-graph-stores-neo4j
+llama-parse
+
+neo4j
+
+python-dotenv
+pydantic
+
+tiktoken
+pypdf
