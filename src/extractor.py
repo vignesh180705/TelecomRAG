@@ -1,137 +1,351 @@
-import os
 import json
+import os
+import re
 
-from dotenv import load_dotenv
-
-from llama_index.core import Document, PropertyGraphIndex
-from llama_index.core.indices.property_graph import SchemaLLMPathExtractor
-from llama_index.llms.groq import Groq
-from llama_index.graph_stores.neo4j import Neo4jPropertyGraphStore
-
-from schema import (
-    EntityType,
-    RelationType,
-    validation_schema,
-)
+from pydantic import BaseModel, Field
+from xai_sdk import Client
+from xai_sdk.chat import system, user
 
 
-load_dotenv()
+# ============================================================
+# STRUCTURED OUTPUT SCHEMA
+# ============================================================
 
-LLM_API = os.getenv("LLM_API")
+class EntityExtraction(BaseModel):
 
-NEO4J_URI = os.getenv("NEO4J_URI")
-NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
-NEO4J_DATABASE = os.getenv("NEO4J_DATABASE")
-
-print("Environment variables loaded.")
-print(f"Using Neo4j database: {NEO4J_DATABASE}")
-
-
-CHUNKS_PATH = "../output/chunks.json"
-
-with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
-    chunks_data = json.load(f)
-
-print(f"Loaded {len(chunks_data)} chunks.")
-
-documents = []
-
-for chunk in chunks_data:
-
-    text = chunk["text"]
-
-    metadata = chunk.get("metadata", {})
-
-    documents.append(
-        Document(
-            text=text,
-            metadata=metadata,
-        )
+    name: str = Field(
+        description="Canonical name of the entity"
     )
 
-keywords = [
-    "AMF",
-    "SMF",
-    "UPF",
-    "PDU Session",
-    "QoS Flow",
-    "gNB",
-    "N2",
-    "N3",
-    "Network Slice",
-]
+    entity_type: str = Field(
+        description="One of the allowed 3GPP ontology entity types"
+    )
 
-technical_documents = []
+    description: str = Field(
+        default="",
+        description="Short description grounded in the text"
+    )
 
-for i, doc in enumerate(documents):
-    text_upper = doc.text.upper()
+    aliases: list[str] = Field(
+        default_factory=list
+    )
 
-    if any(keyword.upper() in text_upper for keyword in keywords):
-        technical_documents.append((i, doc))
-
-    if len(technical_documents) >= 5:
-        break
-
-print("SELECTED TECHNICAL CHUNKS")
-
-for original_index, doc in technical_documents:
-    print()
-    print(f"CHUNK {original_index}")
-    print("-" * 80)
-    print(doc.text[:1500])
-
-test_documents = [doc for _, doc in technical_documents]
-
-print()
-print(f"Using {len(test_documents)} technical chunks for extraction.")
+    evidence: str = Field(
+        description="Exact text supporting this entity"
+    )
 
 
+class RelationshipExtraction(BaseModel):
 
-llm = Groq(
-    model="openai/gpt-oss-120b",
-    api_key=LLM_API,
-    temperature=0.0,
-)
+    source: str
 
+    source_type: str
 
-kg_extractor = SchemaLLMPathExtractor(
-    llm=llm,
+    relationship: str
 
-    possible_entities=EntityType,
+    target: str
 
-    possible_relations=RelationType,
+    target_type: str
 
-    kg_validation_schema=validation_schema,
-
-    strict=True,
-)
+    evidence: str = Field(
+        description="Exact text supporting this relationship"
+    )
 
 
-graph_store = Neo4jPropertyGraphStore(
-    username=NEO4J_USERNAME,
-    password=NEO4J_PASSWORD,
-    url=NEO4J_URI,
-    database=NEO4J_DATABASE,
-)
+class ExtractionResult(BaseModel):
+
+    entities: list[EntityExtraction] = Field(
+        default_factory=list
+    )
+
+    relationships: list[RelationshipExtraction] = Field(
+        default_factory=list
+    )
 
 
-index = PropertyGraphIndex.from_documents(
-    test_documents,
+# ============================================================
+# NAME NORMALIZATION
+# ============================================================
 
-    property_graph_store=graph_store,
+def normalize_name(name):
 
-    kg_extractors=[
-        kg_extractor,
-    ],
+    name = name.lower().strip()
 
-    llm=llm,
+    name = re.sub(
+        r"[^a-z0-9]+",
+        "-",
+        name
+    )
 
-    embed_kg_nodes=False,
-
-    show_progress=True,
-)
+    return name.strip("-")
 
 
-print()
-print("EXTRACTION COMPLETE")
+def make_entity_id(
+    entity_type,
+    name
+):
+
+    return (
+        f"{entity_type.lower()}:"
+        f"{normalize_name(name)}"
+    )
+
+
+# ============================================================
+# GROK EXTRACTOR
+# ============================================================
+
+class ThreeGPPExtractor:
+
+    def __init__(
+        self,
+        schema,
+        model=None
+    ):
+
+        self.schema = schema
+
+        self.model = model or os.getenv(
+            "GROK_MODEL",
+            "grok-4.6"
+        )
+
+        api_key = os.environ[
+            "XAI_API_KEY"
+        ]
+
+        self.client = Client(
+            api_key=api_key
+        )
+
+    # --------------------------------------------------------
+    # Extract
+    # --------------------------------------------------------
+
+    def extract(self, chunk):
+
+        ontology = self.schema.prompt_schema()
+
+        system_prompt = f"""
+You are a specialist information-extraction system
+for 3GPP technical specifications.
+
+Your job is to extract a high-quality property graph
+from the supplied 3GPP text.
+
+You MUST obey the supplied ontology.
+
+ONTOLOGY
+========
+
+{json.dumps(
+    ontology,
+    indent=2,
+    ensure_ascii=False
+)}
+
+EXTRACTION RULES
+================
+
+1. Extract only entities that are explicitly supported
+   by the supplied text.
+
+2. Every entity_type MUST exactly match one of the
+   ontology entity types.
+
+3. Extract relationships only when the text explicitly
+   supports the relationship.
+
+4. Every relationship type MUST exactly match an
+   ontology relationship.
+
+5. Do NOT infer a relationship simply because the ontology
+   permits it.
+
+6. Do NOT invent entities.
+
+7. Do NOT use outside knowledge.
+
+8. Preserve the exact evidence text supporting every
+   extracted entity and relationship.
+
+9. Acronyms should only become entities when they have
+   semantic significance in the supplied text.
+
+10. Prefer canonical technical names.
+
+11. If an entity is described using an acronym and its
+    expanded form, use the expanded technical name as
+    canonical name and put the acronym in aliases.
+
+12. If there is insufficient evidence, do not extract it.
+
+13. The resulting graph must be defensible directly from
+    the source text.
+"""
+
+        user_prompt = f"""
+SOURCE DOCUMENT:
+{chunk["document"]}
+
+PAGE:
+{chunk["page_start"]}
+
+CHUNK ID:
+{chunk["chunk_id"]}
+
+SOURCE TEXT:
+--------------------
+{chunk["text"]}
+--------------------
+
+Extract all supported 3GPP entities and relationships.
+"""
+
+        chat = self.client.chat.create(
+            model=self.model,
+            response_format=ExtractionResult
+        )
+
+        chat.append(
+            system(system_prompt)
+        )
+
+        chat.append(
+            user(user_prompt)
+        )
+
+        response, result = chat.parse(
+            ExtractionResult
+        )
+
+        return self.validate(
+            result
+        )
+
+    # --------------------------------------------------------
+    # Validate against ontology
+    # --------------------------------------------------------
+
+    def validate(
+        self,
+        result
+    ):
+
+        valid_entity_types = set(
+            self.schema.entity_types()
+        )
+
+        valid_entities = []
+
+        for entity in result.entities:
+
+            if (
+                entity.entity_type
+                not in valid_entity_types
+            ):
+                continue
+
+            if not entity.name.strip():
+                continue
+
+            valid_entities.append(
+                entity
+            )
+
+        valid_relationships = []
+
+        for relationship in result.relationships:
+
+            if not self.schema.valid_relationship(
+                relationship.relationship,
+                relationship.source_type,
+                relationship.target_type
+            ):
+                continue
+
+            valid_relationships.append(
+                relationship
+            )
+
+        return {
+            "entities": [
+                self.entity_to_dict(e)
+                for e in valid_entities
+            ],
+
+            "relationships": [
+                self.relationship_to_dict(r)
+                for r in valid_relationships
+            ]
+        }
+
+    # --------------------------------------------------------
+    # Convert entity
+    # --------------------------------------------------------
+
+    @staticmethod
+    def entity_to_dict(entity):
+
+        return {
+            "entity_id": make_entity_id(
+                entity.entity_type,
+                entity.name
+            ),
+
+            "name": entity.name,
+
+            "entity_type":
+                entity.entity_type,
+
+            "description":
+                entity.description,
+
+            "aliases":
+                entity.aliases,
+
+            "evidence":
+                entity.evidence
+        }
+
+    # --------------------------------------------------------
+    # Convert relationship
+    # --------------------------------------------------------
+
+    @staticmethod
+    def relationship_to_dict(
+        relationship
+    ):
+
+        return {
+
+            "source":
+                relationship.source,
+
+            "source_type":
+                relationship.source_type,
+
+            "source_id":
+                make_entity_id(
+                    relationship.source_type,
+                    relationship.source
+                ),
+
+            "relationship":
+                relationship.relationship,
+
+            "target":
+                relationship.target,
+
+            "target_type":
+                relationship.target_type,
+
+            "target_id":
+                make_entity_id(
+                    relationship.target_type,
+                    relationship.target
+                ),
+
+            "evidence":
+                relationship.evidence
+        }
