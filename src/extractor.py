@@ -15,10 +15,6 @@ from schema import (
 )
 
 
-# ============================================================
-# LOAD ENVIRONMENT VARIABLES
-# ============================================================
-
 load_dotenv()
 
 LLM_API = os.getenv("LLM_API")
@@ -28,34 +24,9 @@ NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
 NEO4J_DATABASE = os.getenv("NEO4J_DATABASE")
 
-
-# ============================================================
-# VALIDATE ENVIRONMENT VARIABLES
-# ============================================================
-
-if not LLM_API:
-    raise ValueError("LLM_API is not set.")
-
-if not NEO4J_URI:
-    raise ValueError("NEO4J_URI is not set.")
-
-if not NEO4J_USERNAME:
-    raise ValueError("NEO4J_USERNAME is not set.")
-
-if not NEO4J_PASSWORD:
-    raise ValueError("NEO4J_PASSWORD is not set.")
-
-if not NEO4J_DATABASE:
-    raise ValueError("NEO4J_DATABASE is not set.")
-
-
 print("Environment variables loaded.")
 print(f"Using Neo4j database: {NEO4J_DATABASE}")
 
-
-# ============================================================
-# LOAD CHUNKS
-# ============================================================
 
 CHUNKS_PATH = "../output/chunks.json"
 
@@ -63,11 +34,6 @@ with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
     chunks_data = json.load(f)
 
 print(f"Loaded {len(chunks_data)} chunks.")
-
-
-# ============================================================
-# CONVERT CHUNKS TO LLAMAINDEX DOCUMENTS
-# ============================================================
 
 documents = []
 
@@ -84,12 +50,6 @@ for chunk in chunks_data:
         )
     )
 
-
-# ============================================================
-# TEST WITH FIRST 10 CHUNKS
-# ============================================================
-
-# Find technically meaningful chunks for extraction testing
 keywords = [
     "AMF",
     "SMF",
@@ -113,9 +73,7 @@ for i, doc in enumerate(documents):
     if len(technical_documents) >= 5:
         break
 
-print("=" * 80)
 print("SELECTED TECHNICAL CHUNKS")
-print("=" * 80)
 
 for original_index, doc in technical_documents:
     print()
@@ -129,9 +87,6 @@ print()
 print(f"Using {len(test_documents)} technical chunks for extraction.")
 
 
-# ============================================================
-# GEMINI LLM
-# ============================================================
 
 llm = Groq(
     model="openai/gpt-oss-120b",
@@ -139,9 +94,6 @@ llm = Groq(
     temperature=0.0,
 )
 
-# ============================================================
-# SCHEMA-GUIDED KNOWLEDGE GRAPH EXTRACTOR
-# ============================================================
 
 kg_extractor = SchemaLLMPathExtractor(
     llm=llm,
@@ -156,10 +108,6 @@ kg_extractor = SchemaLLMPathExtractor(
 )
 
 
-# ============================================================
-# NEO4J
-# ============================================================
-
 graph_store = Neo4jPropertyGraphStore(
     username=NEO4J_USERNAME,
     password=NEO4J_PASSWORD,
@@ -167,10 +115,6 @@ graph_store = Neo4jPropertyGraphStore(
     database=NEO4J_DATABASE,
 )
 
-
-# ============================================================
-# BUILD KNOWLEDGE GRAPH
-# ============================================================
 
 index = PropertyGraphIndex.from_documents(
     test_documents,
@@ -189,11 +133,5 @@ index = PropertyGraphIndex.from_documents(
 )
 
 
-# ============================================================
-# COMPLETE
-# ============================================================
-
 print()
-print("=" * 60)
 print("EXTRACTION COMPLETE")
-print("=" * 60)

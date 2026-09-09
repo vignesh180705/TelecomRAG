@@ -9,14 +9,6 @@ load_dotenv()
 
 LLM_API = os.getenv("LLM_API")
 
-if not LLM_API:
-    raise ValueError("LLM_API is not set.")
-
-
-# =========================================================
-# LOAD CHUNKS
-# =========================================================
-
 CHUNKS_PATH = "../output/chunks.json"
 
 with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
@@ -24,10 +16,6 @@ with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
 
 print(f"Loaded {len(chunks_data)} chunks.")
 
-
-# =========================================================
-# SELECT TECHNICAL CHUNK
-# =========================================================
 
 keywords = [
     "AMF",
@@ -74,10 +62,6 @@ print("=" * 80)
 print(text[:4000])
 
 
-# =========================================================
-# LLAMAINDEX GROQ
-# =========================================================
-
 llm = Groq(
     model="openai/gpt-oss-120b",
     api_key=LLM_API,
@@ -85,9 +69,6 @@ llm = Groq(
 )
 
 
-# =========================================================
-# TEST NORMAL LLAMAINDEX COMPLETION
-# =========================================================
 
 prompt = f"""
 You are extracting information from a 3GPP telecommunications
@@ -105,9 +86,7 @@ Give a concise description of:
 """
 
 print()
-print("=" * 80)
 print("TESTING LLAMAINDEX GROQ")
-print("=" * 80)
 
 response = llm.complete(prompt)
 

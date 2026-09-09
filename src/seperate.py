@@ -85,9 +85,9 @@ if selected_chunk is None:
 
 
 print()
-print("=" * 80)
+ 
 print(f"SELECTED CHUNK: {selected_index}")
-print("=" * 80)
+ 
 
 print(selected_chunk["text"][:5000])
 
@@ -125,26 +125,15 @@ kg_extractor = SchemaLLMPathExtractor(
     strict=False,
 )
 
-# =========================================================
-# RUN EXTRACTION
-# =========================================================
-
 print()
-print("=" * 80)
 print("RUNNING SCHEMA EXTRACTION")
-print("=" * 80)
 
 result_nodes = kg_extractor([document])
 
 
-# =========================================================
-# INSPECT EVERYTHING
-# =========================================================
-
 print()
-print("=" * 80)
 print("RESULT")
-print("=" * 80)
+ 
 
 print("Returned nodes:", len(result_nodes))
 
