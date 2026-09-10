@@ -1,27 +1,26 @@
 from pathlib import Path
-import hashlib
-import pymupdf
+import fitz  # PyMuPDF
 
-def document_id(path):
-    return hashlib.sha1(Path(path).name.encode("utf-8")).hexdigest()[:16]
 
-def load_pdf(path, max_pages=0):
-    path = Path(path)
-    if not path.exists():
-        raise FileNotFoundError(path)
-    doc = pymupdf.open(path)
+def specification_name(pdf_path: Path) -> str:
+    """Convert TS_23.501.pdf -> TS 23.501."""
+    return pdf_path.stem.replace("_", " ")
+
+
+def load_pdf_pages(pdf_path: Path):
+    """
+    Yield one record per PDF page. Page numbering is 1-based.
+    The PDF page text is kept intact here; chunking happens later.
+    """
+    doc = fitz.open(pdf_path)
     try:
-        pages = []
-        limit = len(doc) if max_pages <= 0 else min(max_pages, len(doc))
-        for i in range(limit):
-            text = doc.load_page(i).get_text("text") or ""
-            text = "\n".join(x.rstrip() for x in text.splitlines()).strip()
-            pages.append({"page": i + 1, "text": text})
-        return {
-            "document_id": document_id(path),
-            "filename": path.name,
-            "page_count": len(doc),
-            "pages": pages,
-        }
+        for page_index, page in enumerate(doc):
+            text = page.get_text("text") or ""
+            yield {
+                "document": specification_name(pdf_path),
+                "document_file": pdf_path.name,
+                "page": page_index + 1,
+                "text": text,
+            }
     finally:
         doc.close()

@@ -16,92 +16,140 @@
         "domain_id": "D01",
         "domain_name": "5GS Architecture",
         "parent_domain": "5GS Core / Architecture",
-        "description": "System architecture, network functions, entities, reference points, service-based interfaces, access and deployment models.",
-        "source_documents": "TS 23.501"
+        "description": "System architecture, network functions, network entities, reference points, service-based interfaces, deployment and access models.",
+        "source_documents": [
+          "TS 23.501"
+        ]
       },
       {
         "domain_id": "D02",
         "domain_name": "5GS Procedures",
         "parent_domain": "5GS Core / Procedures",
-        "description": "Registration, mobility, PDU session, handover, service request, security and other system procedures.",
-        "source_documents": "TS 23.502"
+        "description": "Registration, authentication, mobility, PDU session management, service request, handover, session modification, release and other 5GS procedures.",
+        "source_documents": [
+          "TS 23.502"
+        ]
       },
       {
         "domain_id": "D03",
         "domain_name": "Policy & Charging",
         "parent_domain": "5GS Core / Policy",
-        "description": "Policy control, QoS policy, charging, spending limits, analytics-driven policy and traffic influence.",
-        "source_documents": "TS 23.503"
+        "description": "Policy control, PCC rules, charging, QoS authorization, spending limits, traffic influence and policy-related analytics.",
+        "source_documents": [
+          "TS 23.503"
+        ]
       },
       {
         "domain_id": "D04",
         "domain_name": "NR / NG-RAN Architecture",
         "parent_domain": "RAN / Architecture",
-        "description": "NG-RAN architecture, functional split, interfaces, protocol architecture, IAB, RAN sharing and special nodes.",
-        "source_documents": "TS 38.300"
+        "description": "NG-RAN architecture, gNB architecture, CU/DU functional split, RAN interfaces, protocol architecture, IAB, RAN sharing and deployment models.",
+        "source_documents": [
+          "TS 38.300"
+        ]
       },
       {
         "domain_id": "D05",
         "domain_name": "NR Radio & Mobility",
         "parent_domain": "RAN / Radio Procedures",
-        "description": "NR physical layer, Layer 2, RRC, mobility, cell selection/reselection, states and radio procedures.",
-        "source_documents": "TS 38.300; TS 38.304"
+        "description": "NR radio operation, RRC, Layer 1 and Layer 2, cell selection and reselection, mobility, measurements, radio states and related procedures.",
+        "source_documents": [
+          "TS 38.300",
+          "TS 38.304"
+        ]
       },
       {
         "domain_id": "D06",
         "domain_name": "UE Capability",
         "parent_domain": "RAN / UE Capabilities",
-        "description": "UE radio-access capability parameters, band combinations, PHY/MAC/RLC/PDCP/SDAP and feature capabilities.",
-        "source_documents": "TS 38.306"
+        "description": "UE radio-access capabilities, supported bands, band combinations, MIMO, PHY/MAC/RLC/PDCP/SDAP capabilities and feature-specific UE capability information.",
+        "source_documents": [
+          "TS 38.306"
+        ]
       },
       {
         "domain_id": "D07",
         "domain_name": "6G Use Cases & Services",
         "parent_domain": "6G / Service & System Requirements",
-        "description": "6G use cases, service requirements, security, resilience, energy, sensing, AI, positioning and vertical services.",
-        "source_documents": "TR 22.870"
+        "description": "6G use cases, service requirements, vertical services, resilience, security, positioning, sensing, AI and emerging service capabilities.",
+        "source_documents": [
+          "TR 22.870"
+        ]
       },
       {
         "domain_id": "D08",
         "domain_name": "6G RAN Scenarios",
         "parent_domain": "6G / RAN Requirements",
-        "description": "6G deployment scenarios, KPIs, architecture/migration, operational requirements and service characteristics.",
-        "source_documents": "TR 38.914"
+        "description": "6G RAN deployment scenarios, KPIs, architectural requirements, migration, operational requirements and service characteristics.",
+        "source_documents": [
+          "TR 38.914"
+        ]
       },
       {
         "domain_id": "D09",
         "domain_name": "Security & Identity",
         "parent_domain": "Cross-domain",
-        "description": "Authentication, authorization, security, privacy, identities and trust concepts appearing across 5GS/NR/6G documents.",
-        "source_documents": "All"
+        "description": "Authentication, authorization, security contexts, security algorithms, identities, privacy, trust and security-related procedures.",
+        "source_documents": [
+          "TS 23.501",
+          "TS 23.502",
+          "TS 23.503",
+          "TS 38.300",
+          "TS 38.304",
+          "TS 38.306",
+          "TR 22.870",
+          "TR 38.914"
+        ]
       },
       {
         "domain_id": "D10",
         "domain_name": "QoS & Traffic",
         "parent_domain": "Cross-domain",
-        "description": "QoS flows, QoS profiles, traffic routing, packet handling, latency, reliability and resource treatment.",
-        "source_documents": "All"
+        "description": "QoS flows, QoS profiles, QFI, 5QI, ARP, GBR, MBR, QoS characteristics, traffic classification, routing, packet handling and performance treatment.",
+        "source_documents": [
+          "TS 23.501",
+          "TS 23.502",
+          "TS 23.503",
+          "TS 38.300",
+          "TR 22.870",
+          "TR 38.914"
+        ]
       },
       {
         "domain_id": "D11",
         "domain_name": "Network Slicing",
         "parent_domain": "Cross-domain",
-        "description": "S-NSSAI, slices, slice selection/admission, slice-related policies and slice-based radio behaviour.",
-        "source_documents": "All"
+        "description": "S-NSSAI, SST, SD, network slices, network slice instances, slice selection, admission, policies and slice-related network behaviour.",
+        "source_documents": [
+          "TS 23.501",
+          "TS 23.502",
+          "TS 23.503",
+          "TS 38.300",
+          "TR 22.870",
+          "TR 38.914"
+        ]
       },
       {
         "domain_id": "D12",
         "domain_name": "Analytics / AI / Sensing",
         "parent_domain": "Cross-domain",
-        "description": "NWDAF/analytics, AI/ML, sensing, network digital twins and intelligent network capabilities.",
-        "source_documents": "TS 23.501; TS 23.503; TR 22.870; TR 38.914"
+        "description": "NWDAF, network analytics, AI/ML, sensing, network digital twins and intelligent network capabilities.",
+        "source_documents": [
+          "TS 23.501",
+          "TS 23.503",
+          "TR 22.870",
+          "TR 38.914"
+        ]
       },
       {
         "domain_id": "D13",
         "domain_name": "Energy & Sustainability",
         "parent_domain": "Cross-domain",
-        "description": "Energy efficiency, energy saving, resilience/green communications and related requirements/KPIs.",
-        "source_documents": "TR 22.870; TR 38.914"
+        "description": "Energy efficiency, energy saving, sustainability, resilient and green communications, energy-related KPIs and operational requirements.",
+        "source_documents": [
+          "TR 22.870",
+          "TR 38.914"
+        ]
       }
     ],
     "classes": [
@@ -194,6 +242,211 @@
         "entity_type": "ANALYTICS_CONCEPT",
         "definition": "Analytics / AI concept",
         "examples": "NWDAF analytics, AI/ML, digital twin"
+      },
+      {
+        "entity_type": "CAPABILITY",
+        "definition": "Network, UE, radio, protocol, or functional capability",
+        "examples": "UE capability, MIMO capability, MR-DC capability, positioning capability"
+      },
+      {
+        "entity_type": "MESSAGE",
+        "definition": "Signalling or protocol message exchanged between entities",
+        "examples": "N2 Path Switch Request, Nsmf_PDUSession_UpdateSMContext, NGAP message"
+      },
+      {
+        "entity_type": "PROCEDURE_STEP",
+        "definition": "Individual step within a procedure or signalling flow",
+        "examples": "Send Registration Request, Establish N4 Session, Update SM Context"
+      },
+      {
+        "entity_type": "EVENT",
+        "definition": "Event that triggers, occurs during, or results from a procedure",
+        "examples": "handover required, cell reselection, QoS change, registration event"
+      },
+      {
+        "entity_type": "CONDITION",
+        "definition": "Condition, criterion, or prerequisite governing a procedure or behaviour",
+        "examples": "cell selection criterion, handover condition, QoS condition"
+      },
+      {
+        "entity_type": "QOS_FLOW",
+        "definition": "5G QoS Flow identified by QFI and associated with QoS parameters",
+        "examples": "QoS Flow, QFI-associated QoS Flow"
+      },
+      {
+        "entity_type": "QOS_PROFILE",
+        "definition": "Set of QoS parameters associated with a QoS Flow or service",
+        "examples": "QoS Profile, QoS Flow QoS parameters"
+      },
+      {
+        "entity_type": "PCC_RULE",
+        "definition": "Policy and Charging Control rule defining traffic policy and QoS treatment",
+        "examples": "PCC rule, authorized PCC rule, dynamic PCC rule"
+      },
+      {
+        "entity_type": "SERVICE_DATA_FLOW",
+        "definition": "Service Data Flow to which PCC and QoS policy is applied",
+        "examples": "SDF, service data flow"
+      },
+      {
+        "entity_type": "PDU_SESSION",
+        "definition": "5G PDU session established between UE and Data Network",
+        "examples": "PDU Session, IPv4 PDU Session, IPv6 PDU Session"
+      },
+      {
+        "entity_type": "DNN",
+        "definition": "Data Network Name identifying a data network",
+        "examples": "internet, IMS, enterprise DNN"
+      },
+      {
+        "entity_type": "PDU_SESSION_TYPE",
+        "definition": "Type of PDU session",
+        "examples": "IPv4, IPv6, IPv4v6, Ethernet, Unstructured"
+      },
+      {
+        "entity_type": "CELL",
+        "definition": "Radio cell or NR cell",
+        "examples": "NR Cell, serving cell, neighbouring cell, primary cell"
+      },
+      {
+        "entity_type": "RAN_NODE",
+        "definition": "Radio access network node",
+        "examples": "gNB, ng-eNB, NG-RAN node"
+      },
+      {
+        "entity_type": "CU",
+        "definition": "Central Unit of a gNB",
+        "examples": "gNB-CU"
+      },
+      {
+        "entity_type": "CU_CP",
+        "definition": "Central Unit Control Plane",
+        "examples": "gNB-CU-CP"
+      },
+      {
+        "entity_type": "CU_UP",
+        "definition": "Central Unit User Plane",
+        "examples": "gNB-CU-UP"
+      },
+      {
+        "entity_type": "DU",
+        "definition": "Distributed Unit of a gNB",
+        "examples": "gNB-DU"
+      },
+      {
+        "entity_type": "MEASUREMENT",
+        "definition": "Radio, network, QoS, or performance measurement",
+        "examples": "RSRP, RSRQ, SINR, load measurement, RTT, packet loss"
+      },
+      {
+        "entity_type": "IDENTIFIER",
+        "definition": "Identifier used to identify a network entity, session, flow, cell, subscriber, or resource",
+        "examples": "QFI, AMF UE NGAP ID, RAN UE NGAP ID, Cell ID"
+      },
+      {
+        "entity_type": "DATA",
+        "definition": "Information or data exchanged, stored, configured, or consumed by network functions",
+        "examples": "UE context data, policy data, subscription data, analytics data"
+      },
+      {
+        "entity_type": "DATA_REPOSITORY",
+        "definition": "Logical repository containing network or subscriber data",
+        "examples": "UDR, UDSF, data repository"
+      },
+      {
+        "entity_type": "UE_CONTEXT",
+        "definition": "Context maintained for a UE by one or more network functions",
+        "examples": "AMF UE context, SMF UE context, RAN UE context"
+      },
+      {
+        "entity_type": "SUBSCRIPTION_DATA",
+        "definition": "Subscriber-related subscription information used by network functions",
+        "examples": "5GS subscription data, Session-AMBR, subscribed S-NSSAI"
+      },
+      {
+        "entity_type": "S_NSSAI",
+        "definition": "Single Network Slice Selection Assistance Information",
+        "examples": "S-NSSAI, SST, SD"
+      },
+      {
+        "entity_type": "NETWORK_SLICE_INSTANCE",
+        "definition": "Instance of a logical network slice",
+        "examples": "Network Slice Instance, NSI"
+      },
+      {
+        "entity_type": "SECURITY_CONTEXT",
+        "definition": "Security state or context maintained for UE or network communication",
+        "examples": "5G security context, NAS security context, AS security context"
+      },
+      {
+        "entity_type": "SECURITY_ALGORITHM",
+        "definition": "Security algorithm used for integrity protection or ciphering",
+        "examples": "NEA, NIA, ciphering algorithm, integrity algorithm"
+      },
+      {
+        "entity_type": "REFERENCE_POINT",
+        "definition": "3GPP reference point connecting network functions or entities",
+        "examples": "N1, N2, N3, N4, N6, N7, N11, N12, N13, N14, N15"
+      },
+      {
+        "entity_type": "SERVICE_BASED_INTERFACE",
+        "definition": "5G service-based interface exposed by a network function",
+        "examples": "Namf, Nsmf, Nudm, Nausf, Npcf, Nnrf, Nnssf, Nnef"
+      },
+      {
+        "entity_type": "PROTOCOL_LAYER",
+        "definition": "Protocol layer within the radio or network protocol stack",
+        "examples": "RRC, PDCP, RLC, MAC, SDAP, PHY"
+      },
+      {
+        "entity_type": "FREQUENCY",
+        "definition": "Radio frequency or frequency-related configuration",
+        "examples": "NR frequency, ARFCN, carrier frequency"
+      },
+      {
+        "entity_type": "NR_BAND",
+        "definition": "NR operating band",
+        "examples": "n1, n28, n78, FR1 band, FR2 band"
+      },
+      {
+        "entity_type": "SUBSCRIBER",
+        "definition": "User or subscription identity represented within the 5G system",
+        "examples": "subscriber, SUPI, GPSI"
+      },
+      {
+        "entity_type": "APPLICATION_FUNCTION",
+        "definition": "Application Function interacting with the 5G core or policy system",
+        "examples": "AF, application function"
+      },
+      {
+        "entity_type": "ANALYTICS",
+        "definition": "Analytics produced or consumed by network functions",
+        "examples": "NWDAF analytics, network performance analytics, QoS analytics"
+      },
+      {
+        "entity_type": "SPECIFICATION",
+        "definition": "3GPP specification document providing authoritative source information",
+        "examples": "TS 23.501, TS 23.502, TS 23.503, TS 38.300"
+      },
+      {
+        "entity_type": "SPECIFICATION_CLAUSE",
+        "definition": "Clause or subclause within a 3GPP specification",
+        "examples": "Clause 4.2, Clause 5.7.1, Annex A"
+      },
+      {
+        "entity_type": "SOURCE_MENTION",
+        "definition": "Occurrence of an entity or relationship in a source document",
+        "examples": "entity mention on page 125 of TS 23.501"
+      },
+      {
+        "entity_type": "SOURCE_EVIDENCE",
+        "definition": "Textual evidence supporting an extracted entity or relationship",
+        "examples": "sentence, paragraph, table row, figure reference"
+      },
+      {
+        "entity_type": "CONCEPT",
+        "definition": "Generic extracted technical concept that does not fit a more specific entity class",
+        "examples": "technical concept, architectural concept, feature concept"
       }
     ],
     "relationships": [
@@ -255,12 +508,757 @@
       {
         "relationship": "PART_OF",
         "source_type": "NETWORK_ENTITY",
-        "target_type": "NETWORK_ARCHITECTURE"
+        "target_type": "NETWORK_ENTITY"
       },
       {
         "relationship": "RELATED_TO",
         "source_type": "*",
         "target_type": "*"
+      },
+      {
+        "relationship": "EXPOSES_SERVICE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "CONSUMES_SERVICE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "SERVICE_PROVIDED_BY",
+        "source_type": "SERVICE",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "SERVICE_CONSUMED_BY",
+        "source_type": "SERVICE",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "USES_SERVICE",
+        "source_type": "PROCEDURE",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "INVOCATES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "INVOKED_BY",
+        "source_type": "SERVICE",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "CONNECTS",
+        "source_type": "INTERFACE",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "CONNECTS_TO",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "TERMINATES_AT",
+        "source_type": "INTERFACE",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "CARRIES",
+        "source_type": "INTERFACE",
+        "target_type": "PROTOCOL"
+      },
+      {
+        "relationship": "SUPPORTS_PROCEDURE",
+        "source_type": "INTERFACE",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "USES_REFERENCE_POINT",
+        "source_type": "PROCEDURE",
+        "target_type": "INTERFACE"
+      },
+      {
+        "relationship": "REFERENCE_POINT_BETWEEN",
+        "source_type": "INTERFACE",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "HAS_SERVICE_BASED_INTERFACE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "INTERFACE"
+      },
+      {
+        "relationship": "USES_PROTOCOL_BY_ENTITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "PROTOCOL"
+      },
+      {
+        "relationship": "USES_PROTOCOL_BY_INTERFACE",
+        "source_type": "INTERFACE",
+        "target_type": "PROTOCOL"
+      },
+      {
+        "relationship": "CARRIES_PROTOCOL",
+        "source_type": "INTERFACE",
+        "target_type": "PROTOCOL"
+      },
+      {
+        "relationship": "RUNS_OVER",
+        "source_type": "PROTOCOL",
+        "target_type": "PROTOCOL"
+      },
+      {
+        "relationship": "BELONGS_TO_LAYER",
+        "source_type": "PROTOCOL",
+        "target_type": "PROTOCOL_LAYER"
+      },
+      {
+        "relationship": "USED_BY_PROCEDURE",
+        "source_type": "PROTOCOL",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "TRANSPORTS",
+        "source_type": "PROTOCOL",
+        "target_type": "MESSAGE"
+      },
+      {
+        "relationship": "TRIGGERS",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "TRIGGERED_BY",
+        "source_type": "PROCEDURE",
+        "target_type": "EVENT"
+      },
+      {
+        "relationship": "CONSISTS_OF",
+        "source_type": "PROCEDURE",
+        "target_type": "PROCEDURE_STEP"
+      },
+      {
+        "relationship": "HAS_STEP",
+        "source_type": "PROCEDURE",
+        "target_type": "PROCEDURE_STEP"
+      },
+      {
+        "relationship": "PRECEDES",
+        "source_type": "PROCEDURE_STEP",
+        "target_type": "PROCEDURE_STEP"
+      },
+      {
+        "relationship": "FOLLOWS",
+        "source_type": "PROCEDURE_STEP",
+        "target_type": "PROCEDURE_STEP"
+      },
+      {
+        "relationship": "INVOLVES",
+        "source_type": "PROCEDURE",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "USES_MESSAGE",
+        "source_type": "PROCEDURE_STEP",
+        "target_type": "MESSAGE"
+      },
+      {
+        "relationship": "SENDS_MESSAGE",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "MESSAGE"
+      },
+      {
+        "relationship": "RECEIVES_MESSAGE",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "MESSAGE"
+      },
+      {
+        "relationship": "RESULTS_IN",
+        "source_type": "PROCEDURE",
+        "target_type": "STATE"
+      },
+      {
+        "relationship": "HAS_PRECONDITION",
+        "source_type": "PROCEDURE",
+        "target_type": "CONDITION"
+      },
+      {
+        "relationship": "HAS_POSTCONDITION",
+        "source_type": "PROCEDURE",
+        "target_type": "CONDITION"
+      },
+      {
+        "relationship": "CARRIES_MESSAGE",
+        "source_type": "PROTOCOL",
+        "target_type": "MESSAGE"
+      },
+      {
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "source_type": "MESSAGE",
+        "target_type": "INFORMATION_ELEMENT"
+      },
+      {
+        "relationship": "CONTAINS_PARAMETER",
+        "source_type": "MESSAGE",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "SENT_OVER",
+        "source_type": "MESSAGE",
+        "target_type": "INTERFACE"
+      },
+      {
+        "relationship": "USED_IN",
+        "source_type": "MESSAGE",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "RESPONSE_TO",
+        "source_type": "MESSAGE",
+        "target_type": "MESSAGE"
+      },
+      {
+        "relationship": "STORES",
+        "source_type": "DATA_REPOSITORY",
+        "target_type": "DATA"
+      },
+      {
+        "relationship": "READS_FROM",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "DATA_REPOSITORY"
+      },
+      {
+        "relationship": "WRITES_TO",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "DATA_REPOSITORY"
+      },
+      {
+        "relationship": "CONSUMES_DATA",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "DATA"
+      },
+      {
+        "relationship": "PROVIDES_DATA",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "DATA"
+      },
+      {
+        "relationship": "CONTAINS_DATA",
+        "source_type": "DATA_REPOSITORY",
+        "target_type": "DATA"
+      },
+      {
+        "relationship": "HAS_SUBSCRIPTION_DATA",
+        "source_type": "SUBSCRIBER",
+        "target_type": "SUBSCRIPTION_DATA"
+      },
+      {
+        "relationship": "HAS_UE_CONTEXT",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "UE_CONTEXT"
+      },
+      {
+        "relationship": "HAS_CAPABILITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "REPORTS_CAPABILITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "SUPPORTS_CAPABILITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "CAPABILITY_APPLIES_TO",
+        "source_type": "CAPABILITY",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "REQUIRES_CAPABILITY",
+        "source_type": "PROCEDURE",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "CONSTRAINS",
+        "source_type": "CAPABILITY",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "ADVERTISES_CAPABILITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "NEGOTIATES_CAPABILITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "CONTAINS_CELL",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "SERVES_CELL",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "CONNECTED_TO",
+        "source_type": "RAN_NODE",
+        "target_type": "RAN_NODE"
+      },
+      {
+        "relationship": "CONTROLS_RAN_NODE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "RAN_NODE"
+      },
+      {
+        "relationship": "HOSTS",
+        "source_type": "RAN_NODE",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "SPLITS_INTO",
+        "source_type": "RAN_NODE",
+        "target_type": "RAN_NODE"
+      },
+      {
+        "relationship": "CONNECTED_VIA",
+        "source_type": "RAN_NODE",
+        "target_type": "INTERFACE"
+      },
+      {
+        "relationship": "HAS_CU",
+        "source_type": "RAN_NODE",
+        "target_type": "CU"
+      },
+      {
+        "relationship": "HAS_DU",
+        "source_type": "RAN_NODE",
+        "target_type": "DU"
+      },
+      {
+        "relationship": "HAS_CU_CP",
+        "source_type": "CU",
+        "target_type": "CU_CP"
+      },
+      {
+        "relationship": "HAS_CU_UP",
+        "source_type": "CU",
+        "target_type": "CU_UP"
+      },
+      {
+        "relationship": "HANDOVERS_TO",
+        "source_type": "CELL",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "HANDOVER_SOURCE",
+        "source_type": "PROCEDURE",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "HANDOVER_TARGET",
+        "source_type": "PROCEDURE",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "SUPPORTS_HANDOVER",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "USES_MOBILITY_PARAMETER",
+        "source_type": "PROCEDURE",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "REPORTS_MEASUREMENT",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "MEASUREMENT"
+      },
+      {
+        "relationship": "TRIGGERS_HANDOVER",
+        "source_type": "MEASUREMENT",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "RESELECTS_TO",
+        "source_type": "CELL",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "SELECTS_CELL",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "CELL"
+      },
+      {
+        "relationship": "BROADCASTS",
+        "source_type": "CELL",
+        "target_type": "INFORMATION_ELEMENT"
+      },
+      {
+        "relationship": "USES_FREQUENCY",
+        "source_type": "CELL",
+        "target_type": "FREQUENCY"
+      },
+      {
+        "relationship": "USES_BAND",
+        "source_type": "CELL",
+        "target_type": "NR_BAND"
+      },
+      {
+        "relationship": "HAS_CELL_ID",
+        "source_type": "CELL",
+        "target_type": "IDENTIFIER"
+      },
+      {
+        "relationship": "HAS_SSB",
+        "source_type": "CELL",
+        "target_type": "RESOURCE"
+      },
+      {
+        "relationship": "CONFIGURED_BY",
+        "source_type": "CELL",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "MEASURED_BY",
+        "source_type": "CELL",
+        "target_type": "MEASUREMENT"
+      },
+      {
+        "relationship": "ESTABLISHES",
+        "source_type": "PROCEDURE",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "MODIFIES",
+        "source_type": "PROCEDURE",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "RELEASES",
+        "source_type": "PROCEDURE",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "MANAGES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "ANCHORS",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "SERVES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "HAS_QOS_FLOW",
+        "source_type": "PDU_SESSION",
+        "target_type": "QOS_FLOW"
+      },
+      {
+        "relationship": "HAS_DNN",
+        "source_type": "PDU_SESSION",
+        "target_type": "DNN"
+      },
+      {
+        "relationship": "USES_S_NSSAI",
+        "source_type": "PDU_SESSION",
+        "target_type": "S_NSSAI"
+      },
+      {
+        "relationship": "ALLOCATES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PDU_SESSION"
+      },
+      {
+        "relationship": "HAS_QOS_FLOW_BY_ENTITY",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "QOS_FLOW"
+      },
+      {
+        "relationship": "IDENTIFIED_BY_QFI",
+        "source_type": "QOS_FLOW",
+        "target_type": "IDENTIFIER"
+      },
+      {
+        "relationship": "USES_5QI",
+        "source_type": "QOS_FLOW",
+        "target_type": "QOS_CONCEPT"
+      },
+      {
+        "relationship": "USES_ARP",
+        "source_type": "QOS_FLOW",
+        "target_type": "QOS_CONCEPT"
+      },
+      {
+        "relationship": "HAS_GBR",
+        "source_type": "QOS_FLOW",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "HAS_MBR",
+        "source_type": "QOS_FLOW",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "HAS_PDB",
+        "source_type": "QOS_CONCEPT",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "HAS_PER",
+        "source_type": "QOS_CONCEPT",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "MAPPED_TO_RESOURCE",
+        "source_type": "QOS_FLOW",
+        "target_type": "RESOURCE"
+      },
+      {
+        "relationship": "MAPPED_TO_PCC_RULE",
+        "source_type": "QOS_FLOW",
+        "target_type": "PCC_RULE"
+      },
+      {
+        "relationship": "CONTROLS_NETWORK_FUNCTION_PCC_RULE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PCC_RULE"
+      },
+      {
+        "relationship": "APPLIES_PCC_RULE",
+        "source_type": "PCC_RULE",
+        "target_type": "SERVICE_DATA_FLOW"
+      },
+      {
+        "relationship": "DERIVES_QOS_FROM",
+        "source_type": "PCC_RULE",
+        "target_type": "QOS_CONCEPT"
+      },
+      {
+        "relationship": "BINDS_TO",
+        "source_type": "PCC_RULE",
+        "target_type": "QOS_FLOW"
+      },
+      {
+        "relationship": "ENFORCES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "QOS_CONCEPT"
+      },
+      {
+        "relationship": "PROVIDES_POLICY",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "APPLIES_POLICY",
+        "source_type": "PARAMETER",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "GENERATES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PCC_RULE"
+      },
+      {
+        "relationship": "MODIFIES_POLICY",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "AUTHORIZES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "REQUESTS_POLICY",
+        "source_type": "APPLICATION_FUNCTION",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "BELONGS_TO_SLICE",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "NETWORK_SLICE"
+      },
+      {
+        "relationship": "USES_SLICE",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "NETWORK_SLICE"
+      },
+      {
+        "relationship": "SELECTS_SLICE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_SLICE"
+      },
+      {
+        "relationship": "HAS_S_NSSAI",
+        "source_type": "NETWORK_SLICE",
+        "target_type": "S_NSSAI"
+      },
+      {
+        "relationship": "SUPPORTS_S_NSSAI",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "S_NSSAI"
+      },
+      {
+        "relationship": "ADMITTED_TO_SLICE",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "NETWORK_SLICE"
+      },
+      {
+        "relationship": "CONTROLS_SLICE_ADMISSION",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_SLICE"
+      },
+      {
+        "relationship": "AUTHENTICATES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_ENTITY"
+      },
+      {
+        "relationship": "AUTHENTICATES_VIA",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "PROVIDES_AUTHENTICATION_DATA",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "DATA"
+      },
+      {
+        "relationship": "PERFORMS_AUTHENTICATION",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "PROCEDURE"
+      },
+      {
+        "relationship": "PROTECTS",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "INTERFACE"
+      },
+      {
+        "relationship": "USES_SECURITY_CONTEXT",
+        "source_type": "NETWORK_ENTITY",
+        "target_type": "SECURITY_CONTEXT"
+      },
+      {
+        "relationship": "REGISTERS_WITH",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "DISCOVERS",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "SELECTS",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "ADVERTISES_SERVICE",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "EXPOSES",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "CONSUMES_EXPOSED_CAPABILITY",
+        "source_type": "APPLICATION_FUNCTION",
+        "target_type": "CAPABILITY"
+      },
+      {
+        "relationship": "REQUESTS",
+        "source_type": "APPLICATION_FUNCTION",
+        "target_type": "SERVICE"
+      },
+      {
+        "relationship": "INFLUENCES",
+        "source_type": "APPLICATION_FUNCTION",
+        "target_type": "PARAMETER"
+      },
+      {
+        "relationship": "COLLECTS_DATA_FROM",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "PROVIDES_ANALYTICS_TO",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "NETWORK_FUNCTION"
+      },
+      {
+        "relationship": "PRODUCES_ANALYTICS",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "ANALYTICS"
+      },
+      {
+        "relationship": "CONSUMES_ANALYTICS",
+        "source_type": "NETWORK_FUNCTION",
+        "target_type": "ANALYTICS"
+      },
+      {
+        "relationship": "FAILS_DUE_TO",
+        "source_type": "PROCEDURE",
+        "target_type": "CONDITION"
+      },
+      {
+        "relationship": "HAS_FAILURE_CAUSE",
+        "source_type": "MESSAGE",
+        "target_type": "CONDITION"
+      },
+      {
+        "relationship": "RECOVERS_FROM",
+        "source_type": "PROCEDURE",
+        "target_type": "CONDITION"
+      },
+      {
+        "relationship": "DEFINED_IN",
+        "source_type": "*",
+        "target_type": "SPECIFICATION"
+      },
+      {
+        "relationship": "SPECIFIED_BY",
+        "source_type": "*",
+        "target_type": "SPECIFICATION"
+      },
+      {
+        "relationship": "DESCRIBED_IN_CLAUSE",
+        "source_type": "*",
+        "target_type": "SPECIFICATION_CLAUSE"
+      },
+      {
+        "relationship": "HAS_EVIDENCE",
+        "source_type": "*",
+        "target_type": "SOURCE_EVIDENCE"
+      },
+      {
+        "relationship": "MENTIONED_IN",
+        "source_type": "*",
+        "target_type": "SPECIFICATION"
+      },
+      {
+        "relationship": "HAS_SOURCE_MENTION",
+        "source_type": "*",
+        "target_type": "SOURCE_MENTION"
       }
     ]
   },

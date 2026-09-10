@@ -99,20 +99,6 @@ from pathlib import Path
 
 
 class Ontology:
-    """
-    Loads the 3GPP ontology from 3gpp_schema.json.
-
-    Expected structure:
-
-    {
-        "ontology": {
-            "domains": [...],
-            "classes": [...],
-            "relationships": [...]
-        },
-        "entities": [...]
-    }
-    """
 
     def __init__(self, path):
         self.path = Path(path)
@@ -131,7 +117,7 @@ class Ontology:
             raise ValueError(
                 f"'ontology' must be an object in {self.path}"
             )
-
+        
         self.domains = ontology.get("domains", [])
         self.classes = ontology.get("classes", [])
         self.relationship_defs = ontology.get("relationships", [])

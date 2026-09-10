@@ -1,0 +1,101 @@
+{
+  "version": "1.0",
+  "chunk_count": 2,
+  "chunks": [
+    {
+      "chunk_id": "TR_22_870_p1_001",
+      "entities": [
+        {
+          "name": "6G system",
+          "entity_type": "NETWORK_SLICE",
+          "description": "A system aimed at supporting new and enhanced services and scenarios based on IMT-2030 usage scenarios.",
+          "evidence": "The present document aims to identify high level principles and use cases - to define potential requirements to enable the 6G system to support the needs of new and enhanced services and scenarios, based on, but not limited to, IMT-2030 usage scenarios."
+        },
+        {
+          "name": "IMT-2030 usage scenarios",
+          "entity_type": "USE_CASE",
+          "description": "Usage scenarios that the 6G system aims to support, based on but not limited to IMT-2030.",
+          "evidence": "to define potential requirements to enable the 6G system to support the needs of new and enhanced services and scenarios, based on, but not limited to, IMT-2030 usage scenarios."
+        },
+        {
+          "name": "System and Operational Aspects",
+          "entity_type": "CONCEPT",
+          "description": "Facilitates system and network operation features that underpin overall operation, covering aspects that apply across use cases and services, and those that relate to network operations.",
+          "evidence": "The study also includes \"System and Operational Aspects\" facilitating system and network operation features that underpin overall operation, covering aspects that apply across use cases and services, and those that relate to network operations."
+        }
+      ],
+      "relationships": [
+        {
+          "source": "6G system",
+          "relationship": "supports",
+          "target": "IMT-2030 usage scenarios",
+          "evidence": "to define potential requirements to enable the 6G system to support the needs of new and enhanced services and scenarios, based on, but not limited to, IMT-2030 usage scenarios."
+        },
+        {
+          "source": "System and Operational Aspects",
+          "relationship": "includes",
+          "target": "migration, interworking, roaming, interconnection, network simplification, network sharing, security, privacy, resilience, sustainability and energy efficiency, device diversity, and support of legacy services",
+          "evidence": "These aspects include, for example: migration, interworking, roaming, interconnection, network simplification, network sharing, security, privacy, resilience, sustainability and energy efficiency, device diversity, and support of legacy services."
+        }
+      ],
+      "document": "TR 22.870",
+      "document_file": "TR_22.870.pdf",
+      "page": 1,
+      "clause": "",
+      "section_title": ""
+    },
+    {
+      "chunk_id": "TR_22_870_p2_001",
+      "entities": [
+        {
+          "name": "3GPP TR 22.870",
+          "entity_type": "DOCUMENT",
+          "description": "Technical Report on a specific topic within 3GPP standards.",
+          "evidence": "3GPP TR 22.870 V20.0.0 (2026-03)"
+        },
+        {
+          "name": "SensCAP",
+          "entity_type": "CONCEPT",
+          "description": "A systematic sensing capability performance metric for 6G ISAC.",
+          "evidence": "SensCAP: A Systematic Sensing Capability Performance Metric for 6G ISAC"
+        },
+        {
+          "name": "IEEE Internet of Things Journal",
+          "entity_type": "JOURNAL",
+          "description": "A journal published by IEEE focusing on the Internet of Things.",
+          "evidence": "IEEE Internet of Things Journal"
+        },
+        {
+          "name": "IEEE signal processing magazine",
+          "entity_type": "JOURNAL",
+          "description": "A magazine published by IEEE focusing on signal processing.",
+          "evidence": "IEEE signal processing magazine"
+        },
+        {
+          "name": "ISO/TS 19139:2007",
+          "entity_type": "STANDARD",
+          "description": "A technical specification by ISO related to geographic information.",
+          "evidence": "ISO/TS 19139:2007"
+        },
+        {
+          "name": "3GPP TS 22.261",
+          "entity_type": "STANDARD",
+          "description": "A technical specification by 3GPP related to service requirements for the 5G system.",
+          "evidence": "3GPP TS 22.261"
+        },
+        {
+          "name": "IEEE Transaction on Visualization and Computer Graphics",
+          "entity_type": "JOURNAL",
+          "description": "A journal published by IEEE focusing on visualization and computer graphics.",
+          "evidence": "IEEE Transaction on Visualization and Computer Graphics"
+        }
+      ],
+      "relationships": [],
+      "document": "TR 22.870",
+      "document_file": "TR_22.870.pdf",
+      "page": 2,
+      "clause": "",
+      "section_title": ""
+    }
+  ]
+}
