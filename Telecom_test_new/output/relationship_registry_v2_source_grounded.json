@@ -1,0 +1,111 @@
+{
+  "stats": {
+    "chunks_seen": 50,
+    "chunks_sent_to_llm": 45,
+    "extractor_skipped": 11,
+    "chunks_skipped": 5,
+    "chunks_no_entities": 5,
+    "raw_relation_mentions": 9,
+    "accepted_relation_mentions": 7,
+    "llm_errors": 6
+  },
+  "relationships": [
+    {
+      "source_entity_id": "application:asd",
+      "relationship_type": "HAS_LIFECYCLE_STAGE",
+      "target_entity_id": "lifecycle_stage:deployment",
+      "confidence": 0.8,
+      "evidence": [
+        {
+          "text": "Table 5.1.3-1 Deployment Flow for ASD and Cloud Native Artifacts Use Case",
+          "confidence": 0.8,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 3,
+          "chunk_id": "ca53d963dbd27f86"
+        }
+      ]
+    },
+    {
+      "source_entity_id": "requirement:deploymentitem",
+      "relationship_type": "APPLIES_TO",
+      "target_entity_id": "network_entity:o-cloud",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "text": "DeploymentItem: a template that describes the requirements for the deployment of a component of the application on the O-Cloud.",
+          "confidence": 0.98,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 6,
+          "chunk_id": "6f6901b46221a9ec"
+        }
+      ]
+    },
+    {
+      "source_entity_id": "network_entity:smo",
+      "relationship_type": "HAS_PARAMETER",
+      "target_entity_id": "parameter:constraints",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "text": "The SMO uses the data available in the respective Deployment Descriptor to extract the specific xNF constraints",
+          "confidence": 0.95,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 14,
+          "chunk_id": "2d31924cd24b3473"
+        }
+      ]
+    },
+    {
+      "source_entity_id": "deployment_descriptor:nf-deployment-descriptor",
+      "relationship_type": "HAS_PARAMETER",
+      "target_entity_id": "parameter:constraints",
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "text": "extracts xNF constraints from the NF deployment descriptor",
+          "confidence": 0.9,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 15,
+          "chunk_id": "c4fafed0f15414e6"
+        }
+      ]
+    },
+    {
+      "source_entity_id": "deployment_descriptor:deploymentdescriptor",
+      "relationship_type": "HAS_PARAMETER",
+      "target_entity_id": "parameter:constraints",
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "text": "constraints fetched from the DeploymentDescriptor (e.g., ASD)",
+          "confidence": 0.98,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 15,
+          "chunk_id": "6bca214ce777723c"
+        },
+        {
+          "text": "checks that the cluster fulfils the constraints from the DeploymentDescriptor.",
+          "confidence": 0.98,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 15,
+          "chunk_id": "c207764a2f1474ad"
+        }
+      ]
+    },
+    {
+      "source_entity_id": "network_entity:smo",
+      "relationship_type": "DEPENDS_ON",
+      "target_entity_id": "deployment_descriptor:deploymentdescriptor",
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "text": "The deployment descriptors provided for the NF deployment shall contain necessary information to enable the SMO, together with other input data received from the cloud operator to perform a homing decision.",
+          "confidence": 0.95,
+          "source": "O-RAN-WG6.AppLCM-Deployment-R003-v02.00.pdf",
+          "page": 17,
+          "chunk_id": "0a17b670016904fb"
+        }
+      ]
+    }
+  ]
+}

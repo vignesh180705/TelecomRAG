@@ -1,0 +1,7 @@
+source_entity_id,relationship_type,target_entity_id,confidence,evidence_count,evidence
+application:asd,HAS_LIFECYCLE_STAGE,lifecycle_stage:deployment,0.8,1,Table 5.1.3-1 Deployment Flow for ASD and Cloud Native Artifacts Use Case
+requirement:deploymentitem,APPLIES_TO,network_entity:o-cloud,0.98,1,DeploymentItem: a template that describes the requirements for the deployment of a component of the application on the O-Cloud.
+network_entity:smo,HAS_PARAMETER,parameter:constraints,0.95,1,The SMO uses the data available in the respective Deployment Descriptor to extract the specific xNF constraints
+deployment_descriptor:nf-deployment-descriptor,HAS_PARAMETER,parameter:constraints,0.9,1,extracts xNF constraints from the NF deployment descriptor
+deployment_descriptor:deploymentdescriptor,HAS_PARAMETER,parameter:constraints,0.98,2,"constraints fetched from the DeploymentDescriptor (e.g., ASD) || checks that the cluster fulfils the constraints from the DeploymentDescriptor."
+network_entity:smo,DEPENDS_ON,deployment_descriptor:deploymentdescriptor,0.95,1,"The deployment descriptors provided for the NF deployment shall contain necessary information to enable the SMO, together with other input data received from the cloud operator to perform a homing decision."
