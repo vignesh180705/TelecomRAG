@@ -10,3 +10,9 @@ pydantic
 
 tiktoken
 pypdf
+
+sentence-transformers
+transformers 
+torch 
+numpy
+qdrant-client
