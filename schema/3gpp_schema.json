@@ -434,11 +434,6 @@
         "examples": "Clause 4.2, Clause 5.7.1, Annex A"
       },
       {
-        "entity_type": "SOURCE_MENTION",
-        "definition": "Occurrence of an entity or relationship in a source document",
-        "examples": "entity mention on page 125 of TS 23.501"
-      },
-      {
         "entity_type": "SOURCE_EVIDENCE",
         "definition": "Textual evidence supporting an extracted entity or relationship",
         "examples": "sentence, paragraph, table row, figure reference"
@@ -767,11 +762,6 @@
       },
       {
         "relationship": "REPORTS_CAPABILITY",
-        "source_type": "NETWORK_ENTITY",
-        "target_type": "CAPABILITY"
-      },
-      {
-        "relationship": "SUPPORTS_CAPABILITY",
         "source_type": "NETWORK_ENTITY",
         "target_type": "CAPABILITY"
       },
@@ -1236,29 +1226,9 @@
         "target_type": "SPECIFICATION"
       },
       {
-        "relationship": "SPECIFIED_BY",
-        "source_type": "*",
-        "target_type": "SPECIFICATION"
-      },
-      {
-        "relationship": "DESCRIBED_IN_CLAUSE",
-        "source_type": "*",
-        "target_type": "SPECIFICATION_CLAUSE"
-      },
-      {
         "relationship": "HAS_EVIDENCE",
         "source_type": "*",
         "target_type": "SOURCE_EVIDENCE"
-      },
-      {
-        "relationship": "MENTIONED_IN",
-        "source_type": "*",
-        "target_type": "SPECIFICATION"
-      },
-      {
-        "relationship": "HAS_SOURCE_MENTION",
-        "source_type": "*",
-        "target_type": "SOURCE_MENTION"
       }
     ]
   },

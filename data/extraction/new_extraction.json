@@ -1,0 +1,395 @@
+{
+  "entities": [
+    {
+      "canonical_name": "3GPP TR 22.870 V20.0.0",
+      "entity_type": "SPECIFICATION",
+      "evidence": "3GPP TR 22.870 V20.0.0 (2026-03)"
+    },
+    {
+      "canonical_name": "3GPP TS 28.404",
+      "entity_type": "SPECIFICATION",
+      "evidence": "3GPP TS 28.404: \"Telecommunication management; Quality of Experience (QoE) measurement collection; Concepts, use cases and requirements\"."
+    },
+    {
+      "canonical_name": "3GPP TS 28.405",
+      "entity_type": "SPECIFICATION",
+      "evidence": "3GPP TS 28.405: \"Telecommunication management; Quality of Experience (QoE) measurement collection; Control and configuration\"."
+    },
+    {
+      "canonical_name": "3GPP TS 28.406",
+      "entity_type": "SPECIFICATION",
+      "evidence": "3GPP TS 28.406: \"Telecommunication management; Quality of Experience (QoE) measurement collection; Information definition and transport\"."
+    },
+    {
+      "canonical_name": "3GPP TS 28.538",
+      "entity_type": "SPECIFICATION",
+      "evidence": "3GPP TS 28.538: \"Management and orchestration; Edge Computing Management\"."
+    },
+    {
+      "canonical_name": "3GPP TS 22.220",
+      "entity_type": "SPECIFICATION",
+      "evidence": "3GPP TS 22.220: \"Service requirements for Home Node B (HNB) and Home eNode B (HeNB)\"."
+    },
+    {
+      "canonical_name": "GSMA Intelligence",
+      "entity_type": "ORGANIZATION",
+      "evidence": "GSMA Intelligence\" \"Network Transformation 2025\" December 2024"
+    },
+    {
+      "canonical_name": "GMSA Intelligence",
+      "entity_type": "ORGANIZATION",
+      "evidence": "GMSA Intelligence: \"The Mobile Economy 2026\", March 2025"
+    },
+    {
+      "canonical_name": "Structural Similarity Index (SSIM)",
+      "entity_type": "CONCEPT",
+      "evidence": "Structural Similarity Index(SSIM), https://medium.com/@akp83540/structural-similarity-index-ssim-c5862bb2b520."
+    },
+    {
+      "canonical_name": "University of Texas, Laboratory for Image & Video Engineering (LIVE)",
+      "entity_type": "ORGANIZATION",
+      "evidence": "University of Texas, Laboratory for Image & Video Engineering (LIVE): http://live.ece.utexas.edu/research/Quality/."
+    },
+    {
+      "canonical_name": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "entity_type": "PUBLICATION",
+      "evidence": "\"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\", https://arxiv.org/pdf/2005.11401v."
+    },
+    {
+      "canonical_name": "Structured 3D Latents for Scalable and Versatile 3D Generation",
+      "entity_type": "PUBLICATION",
+      "evidence": "\"Structured 3D Latents for Scalable and Versatile 3D Generation\". arXiv preprint"
+    }
+  ],
+  "relationships": [],
+  "chunk_id": "TR_22_870_p13_001",
+  "chunk_index": 27,
+  "doc": "TR 22.870",
+  "page": 13
+}
+{
+  "entities": [
+    {
+      "canonical_name": "RACS",
+      "entity_type": "SERVICE",
+      "evidence": "supports RACS as defined in clause 5.4.4.1a of TS 23.501"
+    },
+    {
+      "canonical_name": "UE Radio Capability ID",
+      "entity_type": "PARAMETER",
+      "evidence": "configure the UE with a UE Radio Capability ID"
+    },
+    {
+      "canonical_name": "UCMF",
+      "entity_type": "NETWORK_FUNCTION",
+      "evidence": "UCMF returns to the AMF in a Nucmf_assign service operation"
+    },
+    {
+      "canonical_name": "Nucmf_assign",
+      "entity_type": "PROCEDURE",
+      "evidence": "UCMF returns to the AMF in a Nucmf_assign service operation"
+    },
+    {
+      "canonical_name": "Target NSSAI",
+      "entity_type": "PARAMETER",
+      "evidence": "determine a Target NSSAI, as described in clause 5.3.4.3.3 of TS 23.501"
+    },
+    {
+      "canonical_name": "Nnssf_NSSelection_Get",
+      "entity_type": "PROCEDURE",
+      "evidence": "interacting with the NSSF using Nnssf_NSSelection_Get"
+    },
+    {
+      "canonical_name": "Rejected S-NSSAI",
+      "entity_type": "PARAMETER",
+      "evidence": "includes e.g. the Rejected S-NSSAI(s) for RA"
+    },
+    {
+      "canonical_name": "Allowed NSSAI",
+      "entity_type": "PARAMETER",
+      "evidence": "includes e.g. the Rejected S-NSSAI(s) for RA and Allowed NSSAI"
+    },
+    {
+      "canonical_name": "RFSP index",
+      "entity_type": "PARAMETER",
+      "evidence": "determine RFSP index associated to the Target NSSAI"
+    },
+    {
+      "canonical_name": "Npcf_AMPolicyControl_Update",
+      "entity_type": "PROCEDURE",
+      "evidence": "interacting with the PCF using Npcf_AMPolicyControl_Update"
+    },
+    {
+      "canonical_name": "Disaster Roaming service",
+      "entity_type": "SERVICE",
+      "evidence": "supports Disaster Roaming service, Disaster Roaming service in EPS or both"
+    },
+    {
+      "canonical_name": "list of PLMN(s) to be used in Disaster Condition",
+      "entity_type": "PARAMETER",
+      "evidence": "include the 'list of PLMN(s) to be used in Disaster Condition'"
+    },
+    {
+      "canonical_name": "Disaster Roaming wait range information",
+      "entity_type": "PARAMETER",
+      "evidence": "include the 'list of PLMN(s) to be used in Disaster Condition', Disaster Roaming wait range information"
+    },
+    {
+      "canonical_name": "Disaster Return wait range information",
+      "entity_type": "PARAMETER",
+      "evidence": "include the 'list of PLMN(s) to be used in Disaster Condition', Disaster Roaming wait range information and Disaster Return wait range information"
+    },
+    {
+      "canonical_name": "TS 23.501",
+      "entity_type": "SPECIFICATION",
+      "evidence": "as defined in clause 5.4.4.1a of TS 23.501"
+    },
+    {
+      "canonical_name": "clause 5.3.4.3.3",
+      "entity_type": "SPECIFICATION_CLAUSE",
+      "evidence": "as described in clause 5.3.4.3.3 of TS 23.501"
+    },
+    {
+      "canonical_name": "clause 5.40.5",
+      "entity_type": "SPECIFICATION_CLAUSE",
+      "evidence": "notify the UE as specified in clause 5.40.5 of TS 23.501"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "AMF",
+      "relationship": "USES_SERVICE",
+      "target": "RACS",
+      "evidence": "UE and the AMF supports RACS as defined in clause 5.4.4.1a of TS 23.501"
+    },
+    {
+      "source": "AMF",
+      "relationship": "CONFIGURES",
+      "target": "UE Radio Capability ID",
+      "evidence": "configure the UE with a UE Radio Capability ID"
+    },
+    {
+      "source": "UCMF",
+      "relationship": "PERFORMS",
+      "target": "Nucmf_assign",
+      "evidence": "UCMF returns to the AMF in a Nucmf_assign service operation"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_PROCEDURE",
+      "target": "Nnssf_NSSelection_Get",
+      "evidence": "interacting with the NSSF using Nnssf_NSSelection_Get"
+    },
+    {
+      "source": "Npcf_AMPolicyControl_Update",
+      "relationship": "USES_PARAMETER",
+      "target": "Target NSSAI",
+      "evidence": "includes the Target NSSAI to retrieve a corresponding RFSP index"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_PROCEDURE",
+      "target": "Npcf_AMPolicyControl_Update",
+      "evidence": "interacting with the PCF using Npcf_AMPolicyControl_Update"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_SERVICE",
+      "target": "Disaster Roaming service",
+      "evidence": "supports Disaster Roaming service, Disaster Roaming service in EPS or both"
+    },
+    {
+      "source": "Disaster Roaming service",
+      "relationship": "HAS_PARAMETER",
+      "target": "list of PLMN(s) to be used in Disaster Condition",
+      "evidence": "include the 'list of PLMN(s) to be used in Disaster Condition'"
+    },
+    {
+      "source": "Disaster Roaming service",
+      "relationship": "HAS_PARAMETER",
+      "target": "Disaster Roaming wait range information",
+      "evidence": "include the 'list of PLMN(s) to be used in Disaster Condition', Disaster Roaming wait range information"
+    },
+    {
+      "source": "Disaster Roaming service",
+      "relationship": "HAS_PARAMETER",
+      "target": "Disaster Return wait range information",
+      "evidence": "include the 'list of PLMN(s) to be used in Disaster Condition', Disaster Roaming wait range information and Disaster Return wait range information"
+    },
+    {
+      "source": "RACS",
+      "relationship": "DEFINED_IN",
+      "target": "TS 23.501",
+      "evidence": "as defined in clause 5.4.4.1a of TS 23.501"
+    },
+    {
+      "source": "Target NSSAI",
+      "relationship": "DEFINED_IN",
+      "target": "TS 23.501",
+      "evidence": "as described in clause 5.3.4.3.3 of TS 23.501"
+    },
+    {
+      "source": "Disaster Roaming service",
+      "relationship": "DEFINED_IN",
+      "target": "TS 23.501",
+      "evidence": "as specified in clause 5.40.5 of TS 23.501"
+    }
+  ],
+  "chunk_id": "TS_23_502_p63_002",
+  "chunk_index": 27,
+  "doc": "TS 23.502",
+  "page": 63
+}
+{
+  "entities": [
+    {
+      "canonical_name": "AMF",
+      "entity_type": "NETWORK_FUNCTION",
+      "evidence": "the AMF receives a Subscriber Data Update Notification"
+    },
+    {
+      "canonical_name": "UDM",
+      "entity_type": "NETWORK_FUNCTION",
+      "evidence": "from the UDM that includes MPS priority or MCX priority"
+    },
+    {
+      "canonical_name": "UE Configuration Update Command",
+      "entity_type": "MESSAGE",
+      "evidence": "the AMF includes MPS priority or MCX priority in the UE Configuration Update Command"
+    },
+    {
+      "canonical_name": "Subscriber Data Update Notification",
+      "entity_type": "MESSAGE",
+      "evidence": "the AMF receives a Subscriber Data Update Notification"
+    },
+    {
+      "canonical_name": "MPS priority",
+      "entity_type": "PARAMETER",
+      "evidence": "includes MPS priority or MCX priority in the UE Configuration Update Command"
+    },
+    {
+      "canonical_name": "MCX priority",
+      "entity_type": "PARAMETER",
+      "evidence": "includes MPS priority or MCX priority in the UE Configuration Update Command"
+    },
+    {
+      "canonical_name": "UAS service",
+      "entity_type": "SERVICE",
+      "evidence": "the UAS service becomes enabled or disabled"
+    },
+    {
+      "canonical_name": "LADN Information",
+      "entity_type": "INFORMATION_ELEMENT",
+      "evidence": "the AMF may include LADN Information per DNN and S-NSSAI"
+    },
+    {
+      "canonical_name": "MBSR",
+      "entity_type": "NETWORK_ENTITY",
+      "evidence": "For MBSR (IAB-UE) registered in AMF"
+    },
+    {
+      "canonical_name": "Mapping Of Alternative NSSAI",
+      "entity_type": "INFORMATION_ELEMENT",
+      "evidence": "the AMF includes the Mapping Of Alternative NSSAI within the UE Configuration Update Command"
+    },
+    {
+      "canonical_name": "Alternative S-NSSAI",
+      "entity_type": "S_NSSAI",
+      "evidence": "adds the Alternative S-NSSAI to the Allowed NSSAI and/or Configured NSSAI"
+    },
+    {
+      "canonical_name": "Maximum Time Offset",
+      "entity_type": "PARAMETER",
+      "evidence": "the AMF includes the Maximum Time Offset within the UE Configuration Update Command"
+    },
+    {
+      "canonical_name": "TS 23.501",
+      "entity_type": "SPECIFICATION",
+      "evidence": "as specified in clause 5.22.2 of TS 23.501 [2]"
+    },
+    {
+      "canonical_name": "UE MM Core Network Capability",
+      "entity_type": "CAPABILITY",
+      "evidence": "the UE indicates its support of LADN per DNN and S-NSSAI in the UE MM Core Network Capability"
+    },
+    {
+      "canonical_name": "Network Slice Replacement feature",
+      "entity_type": "FEATURE",
+      "evidence": "the UE indicated a support for the Network Slice Replacement feature"
+    },
+    {
+      "canonical_name": "Allowed NSSAI",
+      "entity_type": "S_NSSAI",
+      "evidence": "replaces an S-NSSAI from an Allowed NSSAI"
+    },
+    {
+      "canonical_name": "Configured NSSAI",
+      "entity_type": "S_NSSAI",
+      "evidence": "adds the Alternative S-NSSAI to the Allowed NSSAI and/or Configured NSSAI"
+    },
+    {
+      "canonical_name": "5GMM Core Network Capability",
+      "entity_type": "CAPABILITY",
+      "evidence": "the UE indicated a support for the Network Slice Replacement feature in the 5GMM Core Network Capability"
+    },
+    {
+      "canonical_name": "discontinuous coverage",
+      "entity_type": "CONDITION",
+      "evidence": "both the UE and the network support unavailability due to discontinuous coverage"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "AMF",
+      "relationship": "SENDS_MESSAGE",
+      "target": "UE Configuration Update Command",
+      "evidence": "the AMF includes MPS priority or MCX priority in the UE Configuration Update Command"
+    },
+    {
+      "source": "AMF",
+      "relationship": "RECEIVES_MESSAGE",
+      "target": "Subscriber Data Update Notification",
+      "evidence": "the AMF receives a Subscriber Data Update Notification"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_INTERFACE",
+      "target": "TS 23.501",
+      "evidence": "as specified in clause 5.22.2 of TS 23.501 [2]"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_INTERFACE",
+      "target": "TS 23.501",
+      "evidence": "as described in clause 5.15.19 of TS 23.501 [2]"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_INTERFACE",
+      "target": "TS 23.501",
+      "evidence": "as described in clause 5.4.13.5 of TS 23.501 [2]"
+    },
+    {
+      "source": "UE",
+      "relationship": "USES_CAPABILITY",
+      "target": "UE MM Core Network Capability",
+      "evidence": "the UE indicates its support of LADN per DNN and S-NSSAI in the UE MM Core Network Capability"
+    },
+    {
+      "source": "UE",
+      "relationship": "USES_CAPABILITY",
+      "target": "5GMM Core Network Capability",
+      "evidence": "the UE indicated a support for the Network Slice Replacement feature in the 5GMM Core Network Capability"
+    },
+    {
+      "source": "AMF",
+      "relationship": "USES_INTERFACE",
+      "target": "TS 23.501",
+      "evidence": "as specified in clause 5.35A.4 of TS 23.501 [2]"
+    }
+  ],
+  "chunk_id": "TS_23_502_p63_003",
+  "chunk_index": 27,
+  "doc": "TS 23.502",
+  "page": 63
+}
