@@ -72,7 +72,10 @@ def main():
     for chunk in chunks:
         provenance = {
             "chunk_id": chunk.get("chunk_id", ""),
-            "document": chunk.get("document", ""),
+            "document": chunk.get(
+                "document",
+                chunk.get("doc", "")
+            ),
             "document_file": chunk.get("document_file", ""),
             "page": chunk.get("page"),
             "clause": chunk.get("clause", ""),
@@ -80,7 +83,7 @@ def main():
         }
 
         for entity in chunk.get("entities", []):
-            if not entity.get("name"):
+            if not entity.get("name") and not entity.get("canonical_name"):
                 continue
 
             key = merge_entity(
@@ -90,7 +93,7 @@ def main():
             )
 
             normalized_name = normalize_name(
-                entity["name"]
+                entity.get("name") or entity.get("canonical_name", "")
             ).lower()
 
             global_name_index.setdefault(
@@ -110,7 +113,10 @@ def main():
     for chunk in chunks:
         provenance = {
             "chunk_id": chunk.get("chunk_id", ""),
-            "document": chunk.get("document", ""),
+            "document": chunk.get(
+                "document",
+                chunk.get("doc", "")
+            ),
             "document_file": chunk.get("document_file", ""),
             "page": chunk.get("page"),
             "clause": chunk.get("clause", ""),

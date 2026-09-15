@@ -15,7 +15,10 @@ def entity_key(name: str, entity_type: str) -> str:
 
 
 def merge_entity(store, entity, provenance):
-    name = normalize_name(entity["name"])
+    name = normalize_name(
+    entity.get("name") or entity.get("canonical_name", "")
+)
+
     et = entity["entity_type"]
     key = entity_key(name, et)
 

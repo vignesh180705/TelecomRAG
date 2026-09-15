@@ -17,13 +17,18 @@ PDF_DIR = ROOT / "data" / "pdfs"
 
 CHUNKS_FILE = ROOT / "data" / "chunks" / "chunks.json"
 
-RAW_EXTRACTION_FILE = ROOT / "data" / "extraction" / "extraction_raw.json"
+#RAW_EXTRACTION_FILE = ROOT / "data" / "extraction" / "extraction_raw.json"
+RAW_EXTRACTION_FILE = ROOT / "out" / "3gpp_ex_new.json"
+
+#VALIDATED_EXTRACTION_FILE = (
+#    ROOT / "out" / "graph_extraction_with_relationships_v2.json"
+#)
 
 VALIDATED_EXTRACTION_FILE = (
-    ROOT / "out" / "graph_extraction_with_relationships.json"
+    ROOT / "out" / "3gpp_ex_new.json"
 )
 
-GRAPH_FILE = ROOT / "out" / "graph_data.json"
+GRAPH_FILE = ROOT / "out" / "graph_data_v2.json"
 
 SCHEMA_FILE = ROOT / "schema" / "3gpp_schema.json"
 
