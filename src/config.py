@@ -3,8 +3,8 @@ import os
 
 ROOT = Path(__file__).resolve().parents[1]
 
-PDF_DIR = ROOT / "data" / "pdfs"
-CHUNKS_FILE = ROOT / "data" / "chunks" / "chunks.json"
+PDF_DIR = ROOT / "data" / "ORAN"
+CHUNKS_FILE = ROOT / "data" / "chunks" / "oran_chunks.json"
 RAW_EXTRACTION_FILE = ROOT / "data" / "extraction" / "extraction_raw.json"
 VALIDATED_EXTRACTION_FILE = ROOT / "data" / "extraction" / "extraction_validated.json"
 GRAPH_FILE = ROOT / "data" / "graph" / "graph_data.json"

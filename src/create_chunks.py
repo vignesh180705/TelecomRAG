@@ -16,7 +16,8 @@ def main():
         sys.exit(1)
 
     all_chunks = []
-
+    total_page_count=0
+    total_doc_count=0
     for pdf in pdfs:
         print(f"Reading {pdf.name}")
         page_count = 0
@@ -26,7 +27,8 @@ def main():
                 make_chunks(page, CHUNK_SIZE, CHUNK_OVERLAP)
             )
         print(f"  pages={page_count}")
-
+        total_page_count+=page_count
+        total_doc_count+=1
     payload = {
         "version": "1.0",
         "chunk_count": len(all_chunks),
@@ -41,7 +43,8 @@ def main():
     )
 
     print(f"Wrote {len(all_chunks)} chunks to {CHUNKS_FILE}")
-
+    print("Total Documents:",total_doc_count)
+    print("Total Pages:",total_page_count)
 
 if __name__ == "__main__":
     main()
