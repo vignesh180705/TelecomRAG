@@ -1,155 +1,103 @@
-import hashlib
 import re
 
 
-def _hash(value):
-    return hashlib.sha1(value.encode("utf-8")).hexdigest()[:20]
+CLAUSE_RE = re.compile(
+    r"^\s*((?:\d+\.)+\d+(?:\.\d+)*)\s+(.{2,200})\s*$"
+)
 
 
-def _split_sentences(text):
+def detect_clause(lines):
     """
-    Split text while preserving 3GPP requirement blocks such as:
-
-    [PR 5.5.5.3-1] ...
-
-    Also keeps normal paragraphs/sentences reasonably intact.
+    Best-effort clause detection from visible PDF text.
+    It deliberately does not invent a clause when one is not visible.
     """
+    current_clause = ""
+    current_title = ""
 
-    # First split on blank lines because 3GPP PDFs often use
-    # blank lines between logical blocks.
-    blocks = re.split(r"\n\s*\n+", text)
-
-    sentences = []
-
-    for block in blocks:
-        block = block.strip()
-
-        if not block:
+    for line in lines:
+        line = " ".join(line.split())
+        if not line:
             continue
 
-        # Requirement blocks should remain together.
-        if re.match(r"^\[PR\s+", block):
-            sentences.append(block)
-            continue
+        match = CLAUSE_RE.match(line)
+        if match:
+            current_clause = match.group(1)
+            current_title = match.group(2).strip()
 
-        # Split ordinary prose at sentence boundaries.
-        parts = re.split(
-            r"(?<=[.!?])\s+(?=[A-Z\[\(])",
-            block
-        )
-
-        for part in parts:
-            part = part.strip()
-            if part:
-                sentences.append(part)
-
-    return sentences
+    return current_clause, current_title
 
 
-def make_chunks(document, chunk_size=1500, overlap=256):
+def split_text(text, max_chars=1800, overlap=250):
     """
-    Create page-aware, sentence-aware chunks.
-
-    Important:
-    - Chunks never cross PDF page boundaries.
-    - Requirements such as [PR ...] are kept intact when possible.
-    - chunk_size is an approximate target, not a hard character cut.
-    - overlap is applied between logical chunks.
+    Character-based splitter that preserves paragraph boundaries when possible.
     """
-
-    if overlap >= chunk_size:
-        raise ValueError("overlap must be smaller than chunk_size")
-
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n+", text) if p.strip()]
     chunks = []
-    index = 0
+    current = ""
 
-    for page in document["pages"]:
-
-        text = page["text"].strip()
-
-        if not text:
-            continue
-
-        sentences = _split_sentences(text)
-
-        if not sentences:
-            continue
-
-        current = []
-
-        for sentence in sentences:
-
-            # --------------------------------------------------------
-            # Normal case: adding sentence still fits target
-            # --------------------------------------------------------
-            candidate = "\n".join(current + [sentence])
-
-            if not current or len(candidate) <= chunk_size:
-                current.append(sentence)
+    for paragraph in paragraphs:
+        if len(paragraph) <= max_chars:
+            candidate = paragraph if not current else current + "\n\n" + paragraph
+            if len(candidate) <= max_chars:
+                current = candidate
                 continue
 
-            # --------------------------------------------------------
-            # Current chunk is ready
-            # --------------------------------------------------------
-            chunk_text = "\n".join(current).strip()
-
-            if chunk_text:
-                chunks.append({
-                    "chunk_id": _hash(
-                        f"{document['document_id']}|"
-                        f"{page['page']}|"
-                        f"{index}|"
-                        f"{chunk_text}"
-                    ),
-                    "document_id": document["document_id"],
-                    "filename": document["filename"],
-                    "page_start": page["page"],
-                    "page_end": page["page"],
-                    "chunk_index": index,
-                    "text": chunk_text,
-                })
-
-                index += 1
-
-            # --------------------------------------------------------
-            # Build overlap from the end of the previous chunk.
-            # Keep complete sentences rather than cutting characters.
-            # --------------------------------------------------------
-            overlap_sentences = []
-            overlap_length = 0
-
-            for previous in reversed(current):
-                if overlap_length + len(previous) > overlap:
-                    break
-
-                overlap_sentences.insert(0, previous)
-                overlap_length += len(previous)
-
-            current = overlap_sentences + [sentence]
-
-        # ------------------------------------------------------------
-        # Flush final chunk for page
-        # ------------------------------------------------------------
         if current:
+            chunks.append(current)
+            current = ""
 
-            chunk_text = "\n".join(current).strip()
+        if len(paragraph) <= max_chars:
+            current = paragraph
+            continue
 
-            if chunk_text:
-                chunks.append({
-                    "chunk_id": _hash(
-                        f"{document['document_id']}|"
-                        f"{page['page']}|"
-                        f"{index}|"
-                        f"{chunk_text}"
-                    ),
-                    "document_id": document["document_id"],
-                    "filename": document["filename"],
-                    "page_start": page["page"],
-                    "page_end": page["page"],
-                    "chunk_index": index,
-                    "text": chunk_text,
-                })
+        # Hard split unusually long paragraphs.
+        start = 0
+        while start < len(paragraph):
+            end = min(start + max_chars, len(paragraph))
+            piece = paragraph[start:end].strip()
+            if piece:
+                chunks.append(piece)
+            if end >= len(paragraph):
+                break
+            start = max(0, end - overlap)
 
-                index += 1
+    if current:
+        chunks.append(current)
 
     return chunks
+
+
+def make_chunks(page_record, max_chars=1800, overlap=250):
+    text = page_record["text"].strip()
+    if not text:
+        return []
+
+    lines = text.splitlines()
+    clause, title = detect_clause(lines)
+    pieces = split_text(text, max_chars=max_chars, overlap=overlap)
+
+    results = []
+    for i, piece in enumerate(pieces, start=1):
+        chunk_id = (
+            f'{page_record["document"].replace(" ", "_").replace(".", "_")}'
+            f'_p{page_record["page"]}_{i:03d}'
+        )
+
+        results.append({
+            "chunk_id": chunk_id,
+            "document": page_record["document"],
+            "document_file": page_record["document_file"],
+            "page": page_record["page"],
+            "clause": clause,
+            "section_title": title,
+            "text": piece,
+            "metadata": {
+                "document": page_record["document"],
+                "document_file": page_record["document_file"],
+                "page": page_record["page"],
+                "clause": clause,
+                "section_title": title,
+            },
+        })
+
+    return results
