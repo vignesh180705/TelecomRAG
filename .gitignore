@@ -28,3 +28,6 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+out_copy/chunk_embeddings.json
+data/ORAN/ORAN Docs.zip
