@@ -1,0 +1,2299 @@
+[
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "the Non-RT-RIC that must be protected."
+      },
+      {
+        "canonical_name": "O-RAN system",
+        "entity_type": "NETWORK_ARCHITECTURE",
+        "evidence": "other components of the O-RAN system."
+      },
+      {
+        "canonical_name": "zero-trust architecture",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "O-RAN Alliance is pursuing a zero-trust architecture (ZTA) for its specifications."
+      },
+      {
+        "canonical_name": "attack surface",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "The attack surface of the Non-RT-RIC includes its interfaces, functions, and data."
+      },
+      {
+        "canonical_name": "data-at-rest",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "Data-at-rest, Data-in-motion, and Data-in-use must be considered."
+      },
+      {
+        "canonical_name": "data-in-motion",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "Data-at-rest, Data-in-motion, and Data-in-use must be considered."
+      },
+      {
+        "canonical_name": "data-in-use",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "Data-at-rest, Data-in-motion, and Data-in-use must be considered."
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_INFORMATION_ELEMENT",
+        "target": "data-at-rest",
+        "evidence": "Data-at-rest, Data-in-motion, and Data-in-use must be considered."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_INFORMATION_ELEMENT",
+        "target": "data-in-motion",
+        "evidence": "Data-at-rest, Data-in-motion, and Data-in-use must be considered."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_INFORMATION_ELEMENT",
+        "target": "data-in-use",
+        "evidence": "Data-at-rest, Data-in-motion, and Data-in-use must be considered."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "attack surface",
+        "evidence": "The attack surface of the Non-RT-RIC includes its interfaces, functions, and data."
+      },
+      {
+        "source": "O-RAN system",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "zero-trust architecture",
+        "evidence": "O-RAN Alliance is pursuing a zero-trust architecture (ZTA) for its specifications."
+      }
+    ],
+    "chunk_index": 0,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 6,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p6_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "specifications of the Non-RT-RIC"
+      },
+      {
+        "canonical_name": "WG2",
+        "entity_type": "WORKGROUP",
+        "evidence": "responsibility of WG2"
+      },
+      {
+        "canonical_name": "WG6",
+        "entity_type": "WORKGROUP",
+        "evidence": "another responsible O-RAN Alliance working group, such as WG6"
+      },
+      {
+        "canonical_name": "WG10",
+        "entity_type": "WORKGROUP",
+        "evidence": "another responsible O-RAN Alliance working group, such as WG10"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_LIFECYCLE_STAGE",
+        "target": "specification",
+        "evidence": "specifications of the Non-RT-RIC"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "RESPONSIBLE_BY",
+        "target": "WG2",
+        "evidence": "responsibility of WG2"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "RELATED_TO",
+        "target": "WG6",
+        "evidence": "another responsible O-RAN Alliance working group, such as WG6"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "RELATED_TO",
+        "target": "WG10",
+        "evidence": "another responsible O-RAN Alliance working group, such as WG10"
+      }
+    ],
+    "chunk_index": 1,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 6,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p6_002"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT RIC Architecture",
+        "entity_type": "DOCUMENT",
+        "evidence": "Non-RT RIC Architecture, v01.00, O-RAN.WG2.Non-RT-RIC-ARCH-TS-v01.00."
+      },
+      {
+        "canonical_name": "A1 interface General Aspects & Principles Specification (A1 GA&P)",
+        "entity_type": "DOCUMENT",
+        "evidence": "A1 interface General Aspects & Principles Specification (A1 GA&P), v02.03, O-RAN.WG2.A1GAP-v02.03."
+      },
+      {
+        "canonical_name": "A1 Interface Transport Protocol Specification (A1 TP)",
+        "entity_type": "DOCUMENT",
+        "evidence": "A1 Interface Transport Protocol Specification (A1 TP), v01.01, O-RAN.WG2.A1TP-v01.01."
+      },
+      {
+        "canonical_name": "A1 Interface Application Protocol Specification (A1 AP)",
+        "entity_type": "DOCUMENT",
+        "evidence": "A1 Interface Application Protocol Specification (A1 AP), v03.01, O-RAN.WG2.A1AP-v03.01."
+      },
+      {
+        "canonical_name": "A1 Interface Type Definitions Specification (A1 TD)",
+        "entity_type": "DOCUMENT",
+        "evidence": "A1 Interface Type Definitions Specification (A1 TD), v02.00, O-RAN.WG2.A1TD-v02.00."
+      },
+      {
+        "canonical_name": "R1 General Aspects and Principles (R1GAP)",
+        "entity_type": "DOCUMENT",
+        "evidence": "R1 General Aspects and Principles (R1GAP), v01.00, O-RAN.WG2.R1GAP-v01.00."
+      },
+      {
+        "canonical_name": "O-RAN Security Requirements Specifications",
+        "entity_type": "DOCUMENT",
+        "evidence": "O-RAN Security Requirements Specifications, v01.00.05, O-RAN.SFG.O-RAN-Security-Requirements-Specifications-v01.00.05."
+      },
+      {
+        "canonical_name": "O-RAN Threat Modelling and Remediation Analysis",
+        "entity_type": "DOCUMENT",
+        "evidence": "O-RAN Threat Modelling and Remediation Analysis, v02.00.02, O-RAN.SFG.O-RAN-Threat-Model-v02.00.02."
+      },
+      {
+        "canonical_name": "O-RAN Security Test Specifications",
+        "entity_type": "DOCUMENT",
+        "evidence": "O-RAN Security Test Specifications, v01.00, O-RAN.SFG.Security-Test-Specifications-v01.00."
+      },
+      {
+        "canonical_name": "O-RAN Architecture Description",
+        "entity_type": "DOCUMENT",
+        "evidence": "O-RAN Architecture Description, v06.00, O-RAN.WG1.O-RAN-Architecture-Description-v06.00."
+      },
+      {
+        "canonical_name": "O-RAN Drafting Rules",
+        "entity_type": "DOCUMENT",
+        "evidence": "O-RAN Drafting Rules, v01.00, O-RAN.TSC.Drafting-Rules.0-v01.00."
+      },
+      {
+        "canonical_name": "Threat Landscape for 5G Networks",
+        "entity_type": "DOCUMENT",
+        "evidence": "Threat Landscape for 5G Networks, ENISA, https://www.enisa.europa.eu/publications/enisa-threat-landscape-for-5g-networks."
+      },
+      {
+        "canonical_name": "Zero Trust Architecture",
+        "entity_type": "DOCUMENT",
+        "evidence": "Zero Trust Architecture, NIST SP 800-207, NIST, https://csrc.nist.gov/publications/detail/sp/800-207/final."
+      },
+      {
+        "canonical_name": "OWASP Top 10 Web Application Security Risks",
+        "entity_type": "DOCUMENT",
+        "evidence": "OWASP Top 10 Web Application Security Risks, 2021, https://owasp.org/www-project-top-ten/."
+      },
+      {
+        "canonical_name": "OWASP Top 10 Proactive Controls",
+        "entity_type": "DOCUMENT",
+        "evidence": "OWASP Top 10 Proactive Controls, 2021, https://owasp.org/projects/spotlight/historical/2021.02.10/."
+      }
+    ],
+    "relationships": [],
+    "chunk_index": 2,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 7,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p7_001"
+  },
+  {
+    "entities": [],
+    "relationships": [],
+    "chunk_index": 3,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 8,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p8_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "A1",
+        "entity_type": "INTERFACE",
+        "evidence": "A1: Interface between non-RT RIC and Near-RT RIC"
+      },
+      {
+        "canonical_name": "A1 policy",
+        "entity_type": "A1_POLICY",
+        "evidence": "A1 policy: Type of declarative policies expressed using formal statements"
+      },
+      {
+        "canonical_name": "A1 Enrichment information",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "A1 Enrichment information: Information utilized by near-RT RIC"
+      },
+      {
+        "canonical_name": "Near-RT RIC",
+        "entity_type": "RIC",
+        "evidence": "Near-RT RIC: O-RAN Near-Real-Time RAN Intelligent Controller"
+      },
+      {
+        "canonical_name": "Non-RT RIC",
+        "entity_type": "RIC",
+        "evidence": "Non-RT RIC: O-RAN Non-Real-Time RAN Intelligent Controller"
+      },
+      {
+        "canonical_name": "Non-RT RIC Applications (rApps)",
+        "entity_type": "RIC_APPLICATION",
+        "evidence": "Non-RT RIC Applications (rApps): Modular applications that leverage the functionality"
+      },
+      {
+        "canonical_name": "E2 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "via fine-grained data collection and actions over E2 interface"
+      },
+      {
+        "canonical_name": "O1/O2 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "recommending values and actions that may be subsequently applied over the O1/O2 interface"
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "Non-RT RIC function in the SMO"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "A1",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "Non-RT RIC",
+        "evidence": "Interface between non-RT RIC and Near-RT RIC"
+      },
+      {
+        "source": "A1",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "Near-RT RIC",
+        "evidence": "Interface between non-RT RIC and Near-RT RIC"
+      },
+      {
+        "source": "A1 policy",
+        "relationship": "APPLIES_TO",
+        "target": "Non-RT RIC",
+        "evidence": "enable the non-RT RIC function in the SMO to guide the near-RT RIC function"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "A1 Enrichment information",
+        "evidence": "Information utilized by near-RT RIC that is collected or derived at SMO/non-RT RIC"
+      },
+      {
+        "source": "Near-RT RIC",
+        "relationship": "USES_INTERFACE",
+        "target": "E2 interface",
+        "evidence": "via fine-grained data collection and actions over E2 interface"
+      },
+      {
+        "source": "Non-RT RIC Applications (rApps)",
+        "relationship": "USES_INTERFACE",
+        "target": "O1/O2 interface",
+        "evidence": "applied over the O1/O2 interface"
+      },
+      {
+        "source": "Non-RT RIC Applications (rApps)",
+        "relationship": "PRODUCES",
+        "target": "A1 Enrichment information",
+        "evidence": "generating \"enrichment information\" for the use of other rApps"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "HOSTS",
+        "target": "Non-RT RIC Applications (rApps)",
+        "evidence": "Non-RT RIC is comprised of the Non-RT RIC Framework and the Non-RT RIC Applications"
+      },
+      {
+        "source": "Non-RT RIC Applications (rApps)",
+        "relationship": "USES_INTERFACE",
+        "target": "R1 interface",
+        "evidence": "leverage the functionality exposed via the Non-RT RIC Framework’s R1 interface"
+      }
+    ],
+    "chunk_index": 4,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 8,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p8_002"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "driving the A1 interface"
+      },
+      {
+        "canonical_name": "O1/O2 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "recommending values and actions that may be subsequently applied over the O1/O2 interface"
+      },
+      {
+        "canonical_name": "Non-RT RIC",
+        "entity_type": "RIC",
+        "evidence": "The rApp functionality within the Non-RT RIC enables non-real-time control and optimization of RAN elements"
+      },
+      {
+        "canonical_name": "Near-RT RIC",
+        "entity_type": "RIC",
+        "evidence": "policy-based guidance to the applications/features in Near-RT RIC"
+      },
+      {
+        "canonical_name": "rApp",
+        "entity_type": "RIC_APPLICATION",
+        "evidence": "The rApp functionality within the Non-RT RIC enables non-real-time control and optimization of RAN elements"
+      },
+      {
+        "canonical_name": "enrichment information",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "generating “enrichment information” for the use of other rApps"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT RIC",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "A1 interface",
+        "evidence": "driving the A1 interface"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "O1/O2 interface",
+        "evidence": "recommending values and actions that may be subsequently applied over the O1/O2 interface"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "PROVIDES_SERVICE",
+        "target": "enrichment information",
+        "evidence": "generating “enrichment information” for the use of other rApps"
+      },
+      {
+        "source": "rApp",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "enrichment information",
+        "evidence": "generating “enrichment information” for the use of other rApps"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "CONTAINS",
+        "target": "rApp",
+        "evidence": "The rApp functionality within the Non-RT RIC enables non-real-time control and optimization of RAN elements"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "CONTROLS",
+        "target": "RAN elements",
+        "evidence": "non-real-time control and optimization of RAN elements"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "PROVIDES_SERVICE",
+        "target": "Near-RT RIC",
+        "evidence": "policy-based guidance to the applications/features in Near-RT RIC"
+      }
+    ],
+    "chunk_index": 5,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 8,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p8_003"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT RIC Framework",
+        "entity_type": "RAN_NODE",
+        "evidence": "Non-RT RIC Framework: That functionality internal to the SMO"
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "SMO: A Service Management and Orchestration system"
+      },
+      {
+        "canonical_name": "R1 Interface",
+        "entity_type": "INTERFACE",
+        "evidence": "R1 Interface: Interface between rApps and Non-RT RIC framework"
+      },
+      {
+        "canonical_name": "R1 Services",
+        "entity_type": "SERVICE",
+        "evidence": "R1 Services: A collection of services including, but not limited to"
+      },
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "logically terminates the A1 interface to the Near-RT RIC"
+      },
+      {
+        "canonical_name": "AI/ML workflow",
+        "entity_type": "WORKFLOW",
+        "evidence": "AI/ML workflow including model training, inference and updates needed for rApps"
+      },
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RIC_APPLICATION",
+        "evidence": "exposes to rApps, via its R1 interface"
+      },
+      {
+        "canonical_name": "Service registration and discovery services",
+        "entity_type": "SERVICE",
+        "evidence": "service registration and discovery services, authentication and authorization services"
+      },
+      {
+        "canonical_name": "AI/ML workflow services",
+        "entity_type": "SERVICE",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      },
+      {
+        "canonical_name": "A1",
+        "entity_type": "INTERFACE",
+        "evidence": "logically terminates the A1 interface to the Near-RT RIC"
+      },
+      {
+        "canonical_name": "O1",
+        "entity_type": "INTERFACE",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      },
+      {
+        "canonical_name": "O2",
+        "entity_type": "INTERFACE",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      },
+      {
+        "canonical_name": "HTTP",
+        "entity_type": "PROTOCOL",
+        "evidence": "HTTP: Hypertext Transfer Protocol"
+      },
+      {
+        "canonical_name": "HTTPS",
+        "entity_type": "PROTOCOL",
+        "evidence": "HTTPS: Hypertext Transfer Protocol Secure"
+      },
+      {
+        "canonical_name": "FTP",
+        "entity_type": "PROTOCOL",
+        "evidence": "FTP: File Transfer Protocol"
+      },
+      {
+        "canonical_name": "FTPS",
+        "entity_type": "PROTOCOL",
+        "evidence": "FTPS: File Transfer Protocol Secure"
+      },
+      {
+        "canonical_name": "JSON",
+        "entity_type": "PROTOCOL",
+        "evidence": "JSON: JavaScript Object Notation"
+      },
+      {
+        "canonical_name": "KPI",
+        "entity_type": "PERFORMANCE_METRIC",
+        "evidence": "KPI: Key Performance Indicator"
+      },
+      {
+        "canonical_name": "KQI",
+        "entity_type": "PERFORMANCE_METRIC",
+        "evidence": "KQI: Key Quality Indicator"
+      },
+      {
+        "canonical_name": "DAR",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "DAR: Data at Rest"
+      },
+      {
+        "canonical_name": "DIM",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "DIM: Data in Motion"
+      },
+      {
+        "canonical_name": "DIU",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "DIU: Data in Use"
+      },
+      {
+        "canonical_name": "eNB",
+        "entity_type": "RAN_NODE",
+        "evidence": "eNB: eNodeB (applies to LTE)"
+      },
+      {
+        "canonical_name": "gNB",
+        "entity_type": "RAN_NODE",
+        "evidence": "gNB: gNodeB (applies to NR)"
+      },
+      {
+        "canonical_name": "MNO",
+        "entity_type": "NETWORK_FUNCTION",
+        "evidence": "MNO: Mobile Network Operator"
+      },
+      {
+        "canonical_name": "NF",
+        "entity_type": "NETWORK_FUNCTION",
+        "evidence": "NF: Network Function"
+      },
+      {
+        "canonical_name": "PII",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "PII: Personally Identifiable Information"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT RIC Framework",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "rApps",
+        "evidence": "exposes to rApps, via its R1 interface"
+      },
+      {
+        "source": "Non-RT RIC Framework",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "SMO",
+        "evidence": "That functionality internal to the SMO"
+      },
+      {
+        "source": "Non-RT RIC Framework",
+        "relationship": "USES_INTERFACE",
+        "target": "R1 Interface",
+        "evidence": "Interface between rApps and Non-RT RIC framework"
+      },
+      {
+        "source": "Non-RT RIC Framework",
+        "relationship": "PROVIDES_SERVICE",
+        "target": "R1 Services",
+        "evidence": "R1 Services: A collection of services including, but not limited to"
+      },
+      {
+        "source": "Non-RT RIC Framework",
+        "relationship": "USES_E2_SERVICE_MODEL",
+        "target": "AI/ML workflow",
+        "evidence": "AI/ML workflow including model training, inference and updates needed for rApps"
+      },
+      {
+        "source": "R1 Services",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "Service registration and discovery services",
+        "evidence": "service registration and discovery services, authentication and authorization services"
+      },
+      {
+        "source": "R1 Services",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "AI/ML workflow services",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      },
+      {
+        "source": "R1 Services",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "A1",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      },
+      {
+        "source": "R1 Services",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "O1",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      },
+      {
+        "source": "R1 Services",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "O2",
+        "evidence": "AI/ML workflow services, and A1, O1 and O2 related services"
+      }
+    ],
+    "chunk_index": 6,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 9,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p9_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "PTP",
+        "entity_type": "PROTOCOL",
+        "evidence": "PTP Precision Timing Protocol"
+      },
+      {
+        "canonical_name": "RBAC",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "RBAC Role-based Access Control"
+      },
+      {
+        "canonical_name": "REST",
+        "entity_type": "PROTOCOL",
+        "evidence": "REST Representational State Transfer"
+      },
+      {
+        "canonical_name": "RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "RIC RAN Intelligent Controller"
+      },
+      {
+        "canonical_name": "RT",
+        "entity_type": "CAPABILITY",
+        "evidence": "RT Real-Time"
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "SMO Service Management and Orchestration"
+      },
+      {
+        "canonical_name": "SSH",
+        "entity_type": "PROTOCOL",
+        "evidence": "SSH Secure Shell"
+      },
+      {
+        "canonical_name": "TCP",
+        "entity_type": "PROTOCOL",
+        "evidence": "TCP Transmission Control Protocol"
+      },
+      {
+        "canonical_name": "TLS",
+        "entity_type": "PROTOCOL",
+        "evidence": "TLS Transport Layer Security"
+      }
+    ],
+    "relationships": [],
+    "chunk_index": 7,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 10,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p10_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "non-RT-RIC",
+        "entity_type": "NETWORK_ARCHITECTURE",
+        "evidence": "The Non-RT-RIC Reference Architecture is a logical architecture"
+      },
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "The A1 interface supports communication & information exchange between non-RT RIC and near-RT RIC"
+      },
+      {
+        "canonical_name": "Attack Surface",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "US National Institute of Standards and Technology (NIST) defines Attack Surface as"
+      },
+      {
+        "canonical_name": "Application On-Boarding",
+        "entity_type": "SERVICE",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding"
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "The Non-RT-RIC attack surface also includes ... SMO"
+      },
+      {
+        "canonical_name": "O-Cloud",
+        "entity_type": "O_CLOUD",
+        "evidence": "The Non-RT-RIC attack surface also includes ... O-Cloud"
+      },
+      {
+        "canonical_name": "Machine Learning",
+        "entity_type": "ML_MODEL",
+        "evidence": "The Non-RT-RIC attack surface also includes ... Machine Learning"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "non-RT-RIC",
+        "relationship": "USES_INTERFACE",
+        "target": "A1 interface",
+        "evidence": "The A1 interface supports communication & information exchange between non-RT RIC and near-RT RIC"
+      },
+      {
+        "source": "non-RT-RIC",
+        "relationship": "HAS_DEPLOYMENT_ITEM",
+        "target": "Application On-Boarding",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding"
+      },
+      {
+        "source": "non-RT-RIC",
+        "relationship": "HAS_DEPLOYMENT_ITEM",
+        "target": "SMO",
+        "evidence": "The Non-RT-RIC attack surface also includes ... SMO"
+      },
+      {
+        "source": "non-RT-RIC",
+        "relationship": "HAS_DEPLOYMENT_ITEM",
+        "target": "O-Cloud",
+        "evidence": "The Non-RT-RIC attack surface also includes ... O-Cloud"
+      },
+      {
+        "source": "non-RT-RIC",
+        "relationship": "HAS_DEPLOYMENT_ITEM",
+        "target": "Machine Learning",
+        "evidence": "The Non-RT-RIC attack surface also includes ... Machine Learning"
+      }
+    ],
+    "chunk_index": 8,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 11,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p11_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "canonical_name": "Application On-Boarding",
+        "entity_type": "PROCEDURE",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "canonical_name": "O-Cloud",
+        "entity_type": "O_CLOUD",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "canonical_name": "Machine Learning",
+        "entity_type": "ML_MODEL",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "Application On-Boarding",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "SMO",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "O-Cloud",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "Machine Learning",
+        "evidence": "The Non-RT-RIC attack surface also includes Application On-Boarding, SMO, O-Cloud, Machine Learning, etc."
+      }
+    ],
+    "chunk_index": 9,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 11,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p11_002"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "Non-RT-RIC, see O-RAN.WG2.Non-RT-RIC-ARCH-TS-v01.00"
+      },
+      {
+        "canonical_name": "O-RAN.WG2.Non-RT-RIC-ARCH-TS-v01.00",
+        "entity_type": "DOCUMENT",
+        "evidence": "Non-RT-RIC, see O-RAN.WG2.Non-RT-RIC-ARCH-TS-v01.00"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "DEFINED_IN",
+        "target": "O-RAN.WG2.Non-RT-RIC-ARCH-TS-v01.00",
+        "evidence": "Non-RT-RIC, see O-RAN.WG2.Non-RT-RIC-ARCH-TS-v01.00"
+      }
+    ],
+    "chunk_index": 10,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 12,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p12_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "The functions in the scope of this document include the rApps, R1 Termination, and A1 Termination."
+      },
+      {
+        "canonical_name": "R1 Termination",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "The functions in the scope of this document include the rApps, R1 Termination, and A1 Termination."
+      },
+      {
+        "canonical_name": "A1 Termination",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "The functions in the scope of this document include the rApps, R1 Termination, and A1 Termination."
+      },
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "• ASSET-C-14: A1 interface, including the protocol stack, O-RAN.WG2.A1GAP-v02.03, A1 interface General Aspects & Principles Specification (A1 GA&P)"
+      },
+      {
+        "canonical_name": "R1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "• ASSET-C-16: R1 interface, including the protocol stack, O-RAN.WG2.R1GAP-v01.00, R1 General Aspects and Principles"
+      },
+      {
+        "canonical_name": "A1 Policies",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "• ASSET-D-07: A1 Policies"
+      },
+      {
+        "canonical_name": "A1 Enrichment Information",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "• ASSET-D-08: A1 Enrichment Information"
+      },
+      {
+        "canonical_name": "R1 Observables",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "• ASSET-D-28: R1 Observables"
+      },
+      {
+        "canonical_name": "X.509 certificates",
+        "entity_type": "CERTIFICATE",
+        "evidence": "• ASSET-D-16: X.509 certificates"
+      },
+      {
+        "canonical_name": "Secret Stores",
+        "entity_type": "SERVICE",
+        "evidence": "Secret Stores –"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Secret Stores",
+        "relationship": "PROVIDES_SERVICE",
+        "target": "Non-RT-RIC",
+        "evidence": "Secret Stores is a SMO service provided to Non-RT-RIC."
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "O-RAN.WG2.A1GAP-v02.03",
+        "evidence": "• ASSET-C-14: A1 interface, including the protocol stack, O-RAN.WG2.A1GAP-v02.03, A1 interface General Aspects & Principles Specification (A1 GA&P)"
+      },
+      {
+        "source": "R1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "O-RAN.WG2.R1GAP-v01.00",
+        "evidence": "• ASSET-C-16: R1 interface, including the protocol stack, O-RAN.WG2.R1GAP-v01.00, R1 General Aspects and Principles"
+      },
+      {
+        "source": "A1 Termination",
+        "relationship": "USES_INTERFACE",
+        "target": "A1 interface",
+        "evidence": "The functions in the scope of this document include the rApps, R1 Termination, and A1 Termination."
+      },
+      {
+        "source": "R1 Termination",
+        "relationship": "USES_INTERFACE",
+        "target": "R1 interface",
+        "evidence": "The functions in the scope of this document include the rApps, R1 Termination, and A1 Termination."
+      },
+      {
+        "source": "A1 Termination",
+        "relationship": "USES_E2_SERVICE_MODEL",
+        "target": "A1 Policies",
+        "evidence": "• ASSET-D-07: A1 Policies"
+      },
+      {
+        "source": "A1 Termination",
+        "relationship": "USES_E2_SERVICE_MODEL",
+        "target": "A1 Enrichment Information",
+        "evidence": "• ASSET-D-08: A1 Enrichment Information"
+      },
+      {
+        "source": "R1 Termination",
+        "relationship": "USES_E2_SERVICE_MODEL",
+        "target": "R1 Observables",
+        "evidence": "• ASSET-D-28: R1 Observables"
+      }
+    ],
+    "chunk_index": 11,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 13,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p13_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "ASSET-D-17",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-17: Security private keys"
+      },
+      {
+        "canonical_name": "ASSET-D-20",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-20: Administrator credentials"
+      },
+      {
+        "canonical_name": "ML Data",
+        "entity_type": "RESOURCE",
+        "evidence": "ML Data"
+      },
+      {
+        "canonical_name": "ASSET-D-25",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-25: Training or test data: data sets collected externally or internally from the Near-RT RIC, O-CU and O-DU and passed to the ML training hosts in a ML system."
+      },
+      {
+        "canonical_name": "ASSET-D-26",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-26: The trained ML model which includes intellectual property, numerous configured hyperparameters and millions of learned parameters."
+      },
+      {
+        "canonical_name": "ASSET-D-27",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-27: The ML prediction results built into the model (e.g. expected outcomes)"
+      },
+      {
+        "canonical_name": "ASSET-D-28",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-28: The behavior of the ML system including tasks for data collection, data wrangling, pipeline management, model retraining, and model deployment."
+      },
+      {
+        "canonical_name": "PII",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "PII"
+      },
+      {
+        "canonical_name": "ASSET-D-30",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "ASSET-D-30: O-RAN specific UE IDs"
+      }
+    ],
+    "relationships": [],
+    "chunk_index": 12,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 14,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p14_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Spoofing",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "1. S - Spoofing identity. An application or program can masquerade as another"
+      },
+      {
+        "canonical_name": "Tampering",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "2. T - Tampering with data. This involves the malicious modification of data"
+      },
+      {
+        "canonical_name": "Repudiation",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "3. R - Repudiation. A user or program refuses the authenticity of a good or reasonable command"
+      },
+      {
+        "canonical_name": "Information disclosure",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "4. I - Information disclosure. This involves the exposure of information to individuals with unauthorized access"
+      },
+      {
+        "canonical_name": "Denial of Service",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "5. D - Denial of service. These attacks deny service to valid users"
+      },
+      {
+        "canonical_name": "Elevation of Privilege",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "6. E - Elevation of privileges. An unauthorized user gains privileged rights to access previously no granted"
+      },
+      {
+        "canonical_name": "Authenticity",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact types: Spoofing: Authenticity"
+      },
+      {
+        "canonical_name": "Integrity",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact types: Tampering: Integrity"
+      },
+      {
+        "canonical_name": "Non-repudiation",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact types: Repudiation: Non-repudiation"
+      },
+      {
+        "canonical_name": "Confidentiality",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact types: Information disclosure: Confidentiality"
+      },
+      {
+        "canonical_name": "Availability",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact types: Denial of Service: Availability"
+      },
+      {
+        "canonical_name": "Authorization",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact types: Elevation of Privilege: Authorization"
+      },
+      {
+        "canonical_name": "Threat Model",
+        "entity_type": "DOCUMENT",
+        "evidence": "3.1 Threat Model"
+      },
+      {
+        "canonical_name": "Threat Template",
+        "entity_type": "DOCUMENT",
+        "evidence": "3.2 Threat Template"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Spoofing",
+        "evidence": "1. S - Spoofing identity. An application or program can masquerade as another"
+      },
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Tampering",
+        "evidence": "2. T - Tampering with data. This involves the malicious modification of data"
+      },
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Repudiation",
+        "evidence": "3. R - Repudiation. A user or program refuses the authenticity of a good or reasonable command"
+      },
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Information disclosure",
+        "evidence": "4. I - Information disclosure. This involves the exposure of information to individuals with unauthorized access"
+      },
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Denial of Service",
+        "evidence": "5. D - Denial of service. These attacks deny service to valid users"
+      },
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Elevation of Privilege",
+        "evidence": "6. E - Elevation of privileges. An unauthorized user gains privileged rights to access previously no granted"
+      },
+      {
+        "source": "Spoofing",
+        "relationship": "RELATED_TO",
+        "target": "Authenticity",
+        "evidence": "Impact types: Spoofing: Authenticity"
+      },
+      {
+        "source": "Tampering",
+        "relationship": "RELATED_TO",
+        "target": "Integrity",
+        "evidence": "Impact types: Tampering: Integrity"
+      },
+      {
+        "source": "Repudiation",
+        "relationship": "RELATED_TO",
+        "target": "Non-repudiation",
+        "evidence": "Impact types: Repudiation: Non-repudiation"
+      },
+      {
+        "source": "Information disclosure",
+        "relationship": "RELATED_TO",
+        "target": "Confidentiality",
+        "evidence": "Impact types: Information disclosure: Confidentiality"
+      },
+      {
+        "source": "Denial of Service",
+        "relationship": "RELATED_TO",
+        "target": "Availability",
+        "evidence": "Impact types: Denial of Service: Availability"
+      },
+      {
+        "source": "Elevation of Privilege",
+        "relationship": "RELATED_TO",
+        "target": "Authorization",
+        "evidence": "Impact types: Elevation of Privilege: Authorization"
+      },
+      {
+        "source": "Threat Model",
+        "relationship": "CONTAINS_SECTION",
+        "target": "Threat Template",
+        "evidence": "3.2 Threat Template"
+      }
+    ],
+    "chunk_index": 13,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 15,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p15_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Cloud Security Alliance",
+        "entity_type": "ORGANIZATION",
+        "evidence": "Cloud Security Alliance (CSA)"
+      },
+      {
+        "canonical_name": "Open Web Application Security Project",
+        "entity_type": "ORGANIZATION",
+        "evidence": "Open Web Application Security Project (OWASP)"
+      },
+      {
+        "canonical_name": "Egregious Eleven",
+        "entity_type": "DOCUMENT",
+        "evidence": "Egregious Eleven [16]"
+      },
+      {
+        "canonical_name": "OWASP Top 10 Web Application Security Risks",
+        "entity_type": "DOCUMENT",
+        "evidence": "OWASP Top 10 Web Application Security Risks [14]"
+      },
+      {
+        "canonical_name": "Broken Access Control",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A01:2021 Broken Access Control"
+      },
+      {
+        "canonical_name": "Cryptographic Failure",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A02:2021 Cryptographic Failure"
+      },
+      {
+        "canonical_name": "Injection",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A03:2021 Injection (including Cross-Site Scripting)"
+      },
+      {
+        "canonical_name": "Insecure Design",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A04:2021 Insecure Design"
+      },
+      {
+        "canonical_name": "Security Misconfiguration",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A05:2021 Security Misconfiguration"
+      },
+      {
+        "canonical_name": "Vulnerable and Outdated Components",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A06:2021 Vulnerable and Outdated Components"
+      },
+      {
+        "canonical_name": "Identification and Authentication Failures",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A07:2021 Identification and Authentication Failures"
+      },
+      {
+        "canonical_name": "Software and Data Integrity Failures",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A08:2021 Software and Data Integrity Failures (including Insecure Deserialization)"
+      },
+      {
+        "canonical_name": "Security Logging and Monitoring Failures",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A09:2021 Security Logging and Monitoring Failures"
+      },
+      {
+        "canonical_name": "Server-Side Request Forgery",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "A10:2021 Server-Side Request Forgery"
+      },
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "Non-RT-RIC"
+      },
+      {
+        "canonical_name": "O-RAN",
+        "entity_type": "NETWORK_ARCHITECTURE",
+        "evidence": "O-RAN"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Cloud Security Alliance",
+        "relationship": "RELATED_TO",
+        "target": "Egregious Eleven",
+        "evidence": "CSA Top Threats to Cloud was updated in 2019 to the 'Egregious Eleven' [16]"
+      },
+      {
+        "source": "Open Web Application Security Project",
+        "relationship": "RELATED_TO",
+        "target": "OWASP Top 10 Web Application Security Risks",
+        "evidence": "OWASP Top 10 Web Application Security Risks [14] was updated in 2021"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "RELATED_TO",
+        "target": "Egregious Eleven",
+        "evidence": "The threats listed above are considered in the Non-RT-RIC threat analysis where relevant to O-RAN and the Non-RT-RIC."
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "RELATED_TO",
+        "target": "OWASP Top 10 Web Application Security Risks",
+        "evidence": "The threats listed above are considered in the Non-RT-RIC threat analysis where relevant to O-RAN and the Non-RT-RIC."
+      },
+      {
+        "source": "O-RAN",
+        "relationship": "RELATED_TO",
+        "target": "Egregious Eleven",
+        "evidence": "The threats listed above are considered in the Non-RT-RIC threat analysis where relevant to O-RAN and the Non-RT-RIC."
+      },
+      {
+        "source": "O-RAN",
+        "relationship": "RELATED_TO",
+        "target": "OWASP Top 10 Web Application Security Risks",
+        "evidence": "The threats listed above are considered in the Non-RT-RIC threat analysis where relevant to O-RAN and the Non-RT-RIC."
+      }
+    ],
+    "chunk_index": 14,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 16,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p16_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "An attacker penetrates the Non-RT RIC to cause a denial of service"
+      },
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "An attacker penetrates the Non-RT RIC through A1 interface"
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "An attacker penetrates the Non-RT RIC through A1 interface or from external sources through SMO"
+      },
+      {
+        "canonical_name": "Denial of Service",
+        "entity_type": "THREAT_TYPE",
+        "evidence": "Threat type Denial of Service"
+      },
+      {
+        "canonical_name": "Information Disclosure",
+        "entity_type": "THREAT_TYPE",
+        "evidence": "Threat type Information Disclosure"
+      },
+      {
+        "canonical_name": "Tampering",
+        "entity_type": "THREAT_TYPE",
+        "evidence": "Threat type Tampering"
+      },
+      {
+        "canonical_name": "Availability",
+        "entity_type": "IMPACT_TYPE",
+        "evidence": "Impact type Availability"
+      },
+      {
+        "canonical_name": "Confidentiality",
+        "entity_type": "IMPACT_TYPE",
+        "evidence": "Impact type Confidentiality"
+      },
+      {
+        "canonical_name": "Integrity",
+        "entity_type": "IMPACT_TYPE",
+        "evidence": "Impact type Integrity"
+      },
+      {
+        "canonical_name": "Near-RT RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "the setup of access control rules and the selection of which Enrichment Information ID (EiId) are exposed to a near-RT RIC"
+      },
+      {
+        "canonical_name": "A1 Enrichment Information",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "The exposure and secure delivery of A1 Enrichment Information to near-RT RIC"
+      },
+      {
+        "canonical_name": "A1 policy",
+        "entity_type": "POLICY",
+        "evidence": "The monitoring or tracing of the network to understand the effect of the A1 policy on performance"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "A1 interface",
+        "evidence": "An attacker penetrates the Non-RT RIC through A1 interface"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "SMO",
+        "evidence": "An attacker penetrates the Non-RT RIC through A1 interface or from external sources through SMO"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "PROVIDES_SERVICE",
+        "target": "A1 Enrichment Information",
+        "evidence": "The exposure and secure delivery of A1 Enrichment Information to near-RT RIC"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "USES_INTERFACE",
+        "target": "A1 interface",
+        "evidence": "An attacker penetrates the Non-RT RIC through A1 interface"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "USES_PROTOCOL",
+        "target": "A1 policy",
+        "evidence": "The monitoring or tracing of the network to understand the effect of the A1 policy on performance"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "A1 Enrichment Information",
+        "evidence": "The exposure and secure delivery of A1 Enrichment Information to near-RT RIC"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "A1 Enrichment Information",
+        "evidence": "The exposure and secure delivery of A1 Enrichment Information to near-RT RIC"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "A1 policy",
+        "evidence": "The monitoring or tracing of the network to understand the effect of the A1 policy on performance"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "A1 interface",
+        "evidence": "An attacker penetrates the Non-RT RIC through A1 interface"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Near-RT RIC",
+        "evidence": "the setup of access control rules and the selection of which Enrichment Information ID (EiId) are exposed to a near-RT RIC"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Denial of Service",
+        "evidence": "Threat type Denial of Service"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Information Disclosure",
+        "evidence": "Threat type Information Disclosure"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Tampering",
+        "evidence": "Threat type Tampering"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Availability",
+        "evidence": "Impact type Availability"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Confidentiality",
+        "evidence": "Impact type Confidentiality"
+      },
+      {
+        "source": "Non-RT-RIC",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Integrity",
+        "evidence": "Impact type Integrity"
+      }
+    ],
+    "chunk_index": 15,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 17,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p17_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "rApps have the ability to manipulate behavior of a certain cell"
+      },
+      {
+        "canonical_name": "Non-RT RIC",
+        "entity_type": "RIC",
+        "evidence": "rApps in the Non-RT RIC can be provided by different vendors"
+      },
+      {
+        "canonical_name": "Threat ID T-rAPP-01",
+        "entity_type": "THREAT",
+        "evidence": "Threat ID T-rAPP-01"
+      },
+      {
+        "canonical_name": "Conflicting rApps",
+        "entity_type": "THREAT",
+        "evidence": "Conflicting rApps unintentionally or maliciously impact O-RAN system functions"
+      },
+      {
+        "canonical_name": "Denial of Service",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Denial of Service"
+      },
+      {
+        "canonical_name": "Availability",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type Availability"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Conflicting rApps",
+        "relationship": "MITIGATES",
+        "target": "Denial of Service",
+        "evidence": "These conflicts are difficult to mitigate since dependencies are impossible to observe"
+      },
+      {
+        "source": "Non-RT RIC",
+        "relationship": "HOSTS",
+        "target": "rApps",
+        "evidence": "rApps in the Non-RT RIC can be provided by different vendors"
+      },
+      {
+        "source": "Conflicting rApps",
+        "relationship": "AFFECTS",
+        "target": "rApps",
+        "evidence": "Conflicting rApps unintentionally or maliciously impact O-RAN system functions"
+      }
+    ],
+    "chunk_index": 16,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 18,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p18_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "rApp",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "Vulnerabilities can potentially exist in any rApp."
+      },
+      {
+        "canonical_name": "non-RT RIC",
+        "entity_type": "RIC",
+        "evidence": "they can disrupt the offered network service and potentially take over another rApp or the non-RT RIC."
+      },
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "alter data transmitted over A1 interface"
+      },
+      {
+        "canonical_name": "Tampering",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Tampering, Denial of Service"
+      },
+      {
+        "canonical_name": "Denial of Service",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Tampering, Denial of Service"
+      },
+      {
+        "canonical_name": "Integrity",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type Integrity, Availability"
+      },
+      {
+        "canonical_name": "Availability",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type Integrity, Availability"
+      },
+      {
+        "canonical_name": "Information Disclosure",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Information Disclosure, Tampering, Denial of Service"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "rApp",
+        "relationship": "SECURED_BY",
+        "target": "non-RT RIC",
+        "evidence": "they can disrupt the offered network service and potentially take over another rApp or the non-RT RIC."
+      },
+      {
+        "source": "rApp",
+        "relationship": "USES_INTERFACE",
+        "target": "A1 interface",
+        "evidence": "alter data transmitted over A1 interface"
+      },
+      {
+        "source": "rApp",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Tampering",
+        "evidence": "Threat type Tampering, Denial of Service"
+      },
+      {
+        "source": "rApp",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Denial of Service",
+        "evidence": "Threat type Tampering, Denial of Service"
+      },
+      {
+        "source": "rApp",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Information Disclosure",
+        "evidence": "Threat type Information Disclosure, Tampering, Denial of Service"
+      },
+      {
+        "source": "rApp",
+        "relationship": "HAS_METRIC",
+        "target": "Integrity",
+        "evidence": "Impact type Integrity, Availability"
+      },
+      {
+        "source": "rApp",
+        "relationship": "HAS_METRIC",
+        "target": "Availability",
+        "evidence": "Impact type Integrity, Availability"
+      }
+    ],
+    "chunk_index": 17,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 18,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p18_002"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "Affected Asset rApps"
+      },
+      {
+        "canonical_name": "non-RT RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "take over another rApp or the whole non-RT RIC"
+      },
+      {
+        "canonical_name": "A1 policy management",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "A1 policy management"
+      },
+      {
+        "canonical_name": "Enrichment information management",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "Enrichment information management"
+      },
+      {
+        "canonical_name": "Network Configuration Optimization",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "Network Configuration Optimization"
+      },
+      {
+        "canonical_name": "AI/ML model training",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "AI/ML model training"
+      },
+      {
+        "canonical_name": "R1 Termination",
+        "entity_type": "RAN_NODE",
+        "evidence": "Affected Asset rApps, R1 Termination"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "non-RT RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "A1 policy management",
+        "evidence": "A1 policy management"
+      },
+      {
+        "source": "non-RT RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "Enrichment information management",
+        "evidence": "Enrichment information management"
+      },
+      {
+        "source": "non-RT RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "Network Configuration Optimization",
+        "evidence": "Network Configuration Optimization"
+      },
+      {
+        "source": "non-RT RIC",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "AI/ML model training",
+        "evidence": "AI/ML model training"
+      },
+      {
+        "source": "rApps",
+        "relationship": "CONNECTS_TO",
+        "target": "non-RT RIC",
+        "evidence": "take over another rApp or the whole non-RT RIC"
+      },
+      {
+        "source": "rApps",
+        "relationship": "CONNECTS_TO",
+        "target": "R1 Termination",
+        "evidence": "Affected Asset rApps, R1 Termination"
+      }
+    ],
+    "chunk_index": 18,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 19,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p19_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "rApps, R1 Termination"
+      },
+      {
+        "canonical_name": "R1 Termination",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "rApps, R1 Termination"
+      },
+      {
+        "canonical_name": "O1 services",
+        "entity_type": "SERVICE",
+        "evidence": "A malicious rApp or a trusted but compromised rApp can exploit O1 services across the R1 interface"
+      },
+      {
+        "canonical_name": "R1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "A malicious rApp or a trusted but compromised rApp can exploit O1 services across the R1 interface"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "rApps",
+        "relationship": "USES_INTERFACE",
+        "target": "R1 interface",
+        "evidence": "A malicious rApp or a trusted but compromised rApp can exploit O1 services across the R1 interface"
+      },
+      {
+        "source": "rApps",
+        "relationship": "USES_SERVICE",
+        "target": "O1 services",
+        "evidence": "A malicious rApp or a trusted but compromised rApp can exploit O1 services across the R1 interface"
+      }
+    ],
+    "chunk_index": 19,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 19,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p19_002"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "R1",
+        "entity_type": "INTERFACE",
+        "evidence": "The R1 interface facilitates inter-connection between rApps and Non-RT RIC framework"
+      },
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RAN_NODE",
+        "evidence": "The R1 interface facilitates inter-connection between rApps and Non-RT RIC framework"
+      },
+      {
+        "canonical_name": "Non-RT RIC framework",
+        "entity_type": "RAN_NODE",
+        "evidence": "The R1 interface facilitates inter-connection between rApps and Non-RT RIC framework"
+      },
+      {
+        "canonical_name": "SMO",
+        "entity_type": "SMO",
+        "evidence": "provides a level of abstraction between rApps and Non-RT RIC framework/SMO"
+      },
+      {
+        "canonical_name": "Service management and exposure services Producer",
+        "entity_type": "SERVICE",
+        "evidence": "‘Service management and exposure services Producer’ determines whether the Service Producer is authorized to produce the service."
+      },
+      {
+        "canonical_name": "Service Heartbeat",
+        "entity_type": "MESSAGE",
+        "evidence": "Attacker can exploit the Service Heartbeat on the R1 by modifying or inserting heartbeat messages"
+      },
+      {
+        "canonical_name": "TLS",
+        "entity_type": "PROTOCOL",
+        "evidence": "Certificate-based mutual authentication using TLS and PKI X.509 certificates is recommended"
+      },
+      {
+        "canonical_name": "PKI X.509 certificates",
+        "entity_type": "CERTIFICATE",
+        "evidence": "Certificate-based mutual authentication using TLS and PKI X.509 certificates is recommended"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "R1",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "rApps",
+        "evidence": "The R1 interface facilitates inter-connection between rApps and Non-RT RIC framework"
+      },
+      {
+        "source": "R1",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "Non-RT RIC framework",
+        "evidence": "The R1 interface facilitates inter-connection between rApps and Non-RT RIC framework"
+      },
+      {
+        "source": "R1",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "SMO",
+        "evidence": "provides a level of abstraction between rApps and Non-RT RIC framework/SMO"
+      },
+      {
+        "source": "Service management and exposure services Producer",
+        "relationship": "PROVIDES_SERVICE",
+        "target": "R1",
+        "evidence": "‘Service management and exposure services Producer’ determines whether the Service Producer is authorized to produce the service."
+      },
+      {
+        "source": "Service Heartbeat",
+        "relationship": "USES_PROTOCOL",
+        "target": "TLS",
+        "evidence": "Certificate-based mutual authentication using TLS and PKI X.509 certificates is recommended"
+      },
+      {
+        "source": "Service Heartbeat",
+        "relationship": "SECURED_BY",
+        "target": "PKI X.509 certificates",
+        "evidence": "Certificate-based mutual authentication using TLS and PKI X.509 certificates is recommended"
+      }
+    ],
+    "chunk_index": 20,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 20,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p20_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "R1",
+        "entity_type": "RAN_NODE",
+        "evidence": "Affected Asset R1"
+      },
+      {
+        "canonical_name": "rApps",
+        "entity_type": "RAN_FUNCTION",
+        "evidence": "Affected Asset rApps"
+      },
+      {
+        "canonical_name": "Data registration and discovery service producer",
+        "entity_type": "NETWORK_FUNCTION",
+        "evidence": "Data registration and discovery service producer determines whether the Data Producer is authorized"
+      },
+      {
+        "canonical_name": "Data request and subscription service",
+        "entity_type": "NETWORK_FUNCTION",
+        "evidence": "Data Consumers consume the Data request and subscription service"
+      },
+      {
+        "canonical_name": "Spoofing",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Spoofing"
+      },
+      {
+        "canonical_name": "Tampering",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Tampering"
+      },
+      {
+        "canonical_name": "Information Disclosure and Tampering",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Information Disclosure and Tampering"
+      },
+      {
+        "canonical_name": "Authorization",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type Authorization"
+      },
+      {
+        "canonical_name": "Integrity",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type Integrity"
+      },
+      {
+        "canonical_name": "Confidentiality",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type Confidentiality"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "Data registration and discovery service producer",
+        "relationship": "SECURED_BY",
+        "target": "Authorization",
+        "evidence": "determines whether the Data Producer is authorized"
+      },
+      {
+        "source": "Data request and subscription service",
+        "relationship": "SECURED_BY",
+        "target": "Authorization",
+        "evidence": "An attacker can perform a spoofing attack to exploit the Data request and subscription service"
+      },
+      {
+        "source": "Data request and subscription service",
+        "relationship": "MITIGATES",
+        "target": "Spoofing",
+        "evidence": "An attacker can perform a spoofing attack to exploit the Data request and subscription service"
+      },
+      {
+        "source": "Data request and subscription service",
+        "relationship": "MITIGATES",
+        "target": "Tampering",
+        "evidence": "An attacker can modify a request to force the consumer to receive a different data set"
+      },
+      {
+        "source": "Data delivery messages",
+        "relationship": "MITIGATES",
+        "target": "Information Disclosure and Tampering",
+        "evidence": "An attacker can perform snooping, injection, or modification attacks in the Delivery of Data process"
+      },
+      {
+        "source": "R1",
+        "relationship": "SECURED_BY",
+        "target": "Authorization",
+        "evidence": "Affected Asset R1"
+      },
+      {
+        "source": "rApps",
+        "relationship": "SECURED_BY",
+        "target": "Authorization",
+        "evidence": "Affected Asset rApps"
+      },
+      {
+        "source": "R1",
+        "relationship": "MITIGATES",
+        "target": "Spoofing",
+        "evidence": "Affected Asset R1"
+      },
+      {
+        "source": "rApps",
+        "relationship": "MITIGATES",
+        "target": "Spoofing",
+        "evidence": "Affected Asset rApps"
+      },
+      {
+        "source": "R1",
+        "relationship": "MITIGATES",
+        "target": "Tampering",
+        "evidence": "Affected Asset R1"
+      },
+      {
+        "source": "rApps",
+        "relationship": "MITIGATES",
+        "target": "Tampering",
+        "evidence": "Affected Asset rApps"
+      },
+      {
+        "source": "R1",
+        "relationship": "MITIGATES",
+        "target": "Information Disclosure and Tampering",
+        "evidence": "Affected Asset R1"
+      },
+      {
+        "source": "rApps",
+        "relationship": "MITIGATES",
+        "target": "Information Disclosure and Tampering",
+        "evidence": "Affected Asset rApps"
+      }
+    ],
+    "chunk_index": 21,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 21,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p21_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "The purpose of the A1 interface is to enable the Non-RT RIC function"
+      },
+      {
+        "canonical_name": "Non-RT RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "The purpose of the A1 interface is to enable the Non-RT RIC function"
+      },
+      {
+        "canonical_name": "Near-RT RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "The purpose of the A1 interface is to enable the Non-RT RIC function to provide policy-based guidance"
+      },
+      {
+        "canonical_name": "T-A1-01",
+        "entity_type": "THREAT",
+        "evidence": "Threat ID T-A1-01 Untrusted peering between Non-RT-RIC and Near-RT-RIC"
+      },
+      {
+        "canonical_name": "T-A1-02",
+        "entity_type": "THREAT",
+        "evidence": "Threat ID T-A1-02 Malicious function or application monitors messaging across A1 interface"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "A1 interface",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "Non-RT RIC",
+        "evidence": "The A1 interface is used for discovery, request and delivery of A1 Enrichment Information"
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "COMMUNICATES_WITH",
+        "target": "Near-RT RIC",
+        "evidence": "The A1 interface is used for discovery, request and delivery of A1 Enrichment Information"
+      },
+      {
+        "source": "T-A1-01",
+        "relationship": "AFFECTS",
+        "target": "A1 interface",
+        "evidence": "Affected Asset A1 interface"
+      },
+      {
+        "source": "T-A1-01",
+        "relationship": "AFFECTS",
+        "target": "Non-RT RIC",
+        "evidence": "Affected Asset Non-RT-RIC"
+      },
+      {
+        "source": "T-A1-01",
+        "relationship": "AFFECTS",
+        "target": "Near-RT RIC",
+        "evidence": "Affected Asset Near-RT-RIC"
+      },
+      {
+        "source": "T-A1-02",
+        "relationship": "AFFECTS",
+        "target": "A1 interface",
+        "evidence": "Affected Asset A1 interface"
+      },
+      {
+        "source": "T-A1-02",
+        "relationship": "AFFECTS",
+        "target": "Non-RT RIC",
+        "evidence": "Affected Asset Non-RT-RIC"
+      },
+      {
+        "source": "T-A1-02",
+        "relationship": "AFFECTS",
+        "target": "Near-RT RIC",
+        "evidence": "Affected Asset Near-RT-RIC"
+      }
+    ],
+    "chunk_index": 22,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 22,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p22_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "A1 interface",
+        "entity_type": "INTERFACE",
+        "evidence": "the A1 and R1 interfaces use the REST protocol stack"
+      },
+      {
+        "canonical_name": "REST API",
+        "entity_type": "API_OPERATION",
+        "evidence": "The A1 and R1 interfaces use the REST API."
+      },
+      {
+        "canonical_name": "TLS",
+        "entity_type": "PROTOCOL",
+        "evidence": "TLS provides secure HTTP connections for secure transport of messages."
+      },
+      {
+        "canonical_name": "HTTP",
+        "entity_type": "PROTOCOL",
+        "evidence": "HTTP is the application-level protocol used providing reliable transport of messages."
+      },
+      {
+        "canonical_name": "TCP",
+        "entity_type": "PROTOCOL",
+        "evidence": "TCP provides the communication service at the transport layer."
+      },
+      {
+        "canonical_name": "IP transport",
+        "entity_type": "TRANSPORT_NETWORK",
+        "evidence": "The transport network layer is built on IP transport."
+      },
+      {
+        "canonical_name": "JSON formatted policy statements",
+        "entity_type": "INFORMATION_ELEMENT",
+        "evidence": "application layer protocol is based on a RESTful approach with transfer of JSON formatted policy statements."
+      },
+      {
+        "canonical_name": "Near-RT RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "This can result in the Near-RT RIC receiving malicious policy."
+      },
+      {
+        "canonical_name": "Non-RT-RIC",
+        "entity_type": "RAN_NODE",
+        "evidence": "Affected Asset: Non-RT-RIC, Near-RT-RIC, A1 interface"
+      },
+      {
+        "canonical_name": "Malicious function or application modifies messaging across A1 interface",
+        "entity_type": "USE_CASE",
+        "evidence": "Threat title: Malicious function or application modifies messaging across A1 interface"
+      },
+      {
+        "canonical_name": "REST API Exploits",
+        "entity_type": "USE_CASE",
+        "evidence": "Threat title: REST API Exploits"
+      },
+      {
+        "canonical_name": "Tampering",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type: Tampering"
+      },
+      {
+        "canonical_name": "Integrity",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type: Integrity"
+      },
+      {
+        "canonical_name": "Spoofing",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type: Spoofing, Tampering, Information Disclosure"
+      },
+      {
+        "canonical_name": "Confidentiality",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type: Confidentiality, Integrity, Authenticity"
+      },
+      {
+        "canonical_name": "Information Disclosure",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type: Spoofing, Tampering, Information Disclosure"
+      },
+      {
+        "canonical_name": "Authenticity",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Impact type: Confidentiality, Integrity, Authenticity"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "A1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "REST API",
+        "evidence": "The A1 and R1 interfaces use the REST protocol stack"
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "HTTP",
+        "evidence": "HTTP is the application-level protocol used providing reliable transport of messages."
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "TCP",
+        "evidence": "TCP provides the communication service at the transport layer."
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "TLS",
+        "evidence": "TLS provides secure HTTP connections for secure transport of messages."
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "USES_PROTOCOL",
+        "target": "IP transport",
+        "evidence": "The transport network layer is built on IP transport."
+      },
+      {
+        "source": "A1 interface",
+        "relationship": "CONTAINS_INFORMATION_ELEMENT",
+        "target": "JSON formatted policy statements",
+        "evidence": "application layer protocol is based on a RESTful approach with transfer of JSON formatted policy statements."
+      },
+      {
+        "source": "Malicious function or application modifies messaging across A1 interface",
+        "relationship": "AFFECTS",
+        "target": "Near-RT RIC",
+        "evidence": "This can result in the Near-RT RIC receiving malicious policy."
+      },
+      {
+        "source": "Malicious function or application modifies messaging across A1 interface",
+        "relationship": "AFFECTS",
+        "target": "Non-RT-RIC",
+        "evidence": "Affected Asset: Non-RT-RIC, Near-RT-RIC, A1 interface"
+      },
+      {
+        "source": "Malicious function or application modifies messaging across A1 interface",
+        "relationship": "AFFECTS",
+        "target": "A1 interface",
+        "evidence": "Affected Asset: Non-RT-RIC, Near-RT-RIC, A1 interface"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "AFFECTS",
+        "target": "Near-RT RIC",
+        "evidence": "Affected Asset: Non-RT-RIC, Near-RT-RIC, A1 interface"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "AFFECTS",
+        "target": "Non-RT-RIC",
+        "evidence": "Affected Asset: Non-RT-RIC, Near-RT-RIC, A1 interface"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "AFFECTS",
+        "target": "A1 interface",
+        "evidence": "Affected Asset: Non-RT-RIC, Near-RT-RIC, A1 interface"
+      },
+      {
+        "source": "Malicious function or application modifies messaging across A1 interface",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Tampering",
+        "evidence": "Threat type: Tampering"
+      },
+      {
+        "source": "Malicious function or application modifies messaging across A1 interface",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Integrity",
+        "evidence": "Impact type: Integrity"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Spoofing",
+        "evidence": "Threat type: Spoofing, Tampering, Information Disclosure"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Tampering",
+        "evidence": "Threat type: Spoofing, Tampering, Information Disclosure"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Information Disclosure",
+        "evidence": "Threat type: Spoofing, Tampering, Information Disclosure"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Confidentiality",
+        "evidence": "Impact type: Confidentiality, Integrity, Authenticity"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Integrity",
+        "evidence": "Impact type: Confidentiality, Integrity, Authenticity"
+      },
+      {
+        "source": "REST API Exploits",
+        "relationship": "HAS_SECURITY_CONCEPT",
+        "target": "Authenticity",
+        "evidence": "Impact type: Confidentiality, Integrity, Authenticity"
+      }
+    ],
+    "chunk_index": 23,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 23,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p23_001"
+  },
+  {
+    "entities": [
+      {
+        "canonical_name": "A1",
+        "entity_type": "INTERFACE",
+        "evidence": "The A1 and R1 interfaces use the REST API"
+      },
+      {
+        "canonical_name": "R1",
+        "entity_type": "INTERFACE",
+        "evidence": "The A1 and R1 interfaces use the REST API"
+      },
+      {
+        "canonical_name": "REST API",
+        "entity_type": "PROTOCOL",
+        "evidence": "The A1 and R1 interfaces use the REST API"
+      },
+      {
+        "canonical_name": "Broken Object Level Authorization",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "REST API – Broken Object Level Authorization"
+      },
+      {
+        "canonical_name": "Information Disclosure",
+        "entity_type": "SECURITY_CONCEPT",
+        "evidence": "Threat type Information Disclosure"
+      }
+    ],
+    "relationships": [
+      {
+        "source": "A1",
+        "relationship": "USES_PROTOCOL",
+        "target": "REST API",
+        "evidence": "The A1 and R1 interfaces use the REST API"
+      },
+      {
+        "source": "R1",
+        "relationship": "USES_PROTOCOL",
+        "target": "REST API",
+        "evidence": "The A1 and R1 interfaces use the REST API"
+      },
+      {
+        "source": "REST API",
+        "relationship": "HAS_CAPABILITY",
+        "target": "Broken Object Level Authorization",
+        "evidence": "REST API – Broken Object Level Authorization"
+      },
+      {
+        "source": "Broken Object Level Authorization",
+        "relationship": "RELATED_TO",
+        "target": "Information Disclosure",
+        "evidence": "Threat type Information Disclosure"
+      }
+    ],
+    "chunk_index": 24,
+    "doc": "O-RAN.SFG.Non-RT-RIC-Security-TR-v01.00",
+    "page": 23,
+    "chunk_id": "O-RAN_SFG_Non-RT-RIC-Security-TR-v01_00_p23_002"
+  }
+]

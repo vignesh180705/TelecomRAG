@@ -14,10 +14,66 @@ def entity_key(name: str, entity_type: str) -> str:
     return f"{entity_type.lower()}:{normalized}"
 
 
+def merge_property_value(existing, incoming):
+    """
+    Merge two property values without losing information.
+    """
+
+    if incoming is None or incoming == "":
+        return existing
+
+    if existing is None or existing == "":
+        return incoming
+
+    existing_values = (
+        existing if isinstance(existing, list)
+        else [existing]
+    )
+
+    incoming_values = (
+        incoming if isinstance(incoming, list)
+        else [incoming]
+    )
+
+    merged = existing_values.copy()
+
+    for value in incoming_values:
+        if value not in merged:
+            merged.append(value)
+
+    if len(merged) == 1:
+        return merged[0]
+
+    return merged
+
+
+def merge_properties(existing_properties, incoming_properties):
+    """
+    Merge properties from multiple occurrences of the same entity.
+    """
+
+    if not isinstance(incoming_properties, dict):
+        return existing_properties
+
+    for key, value in incoming_properties.items():
+
+        if key not in existing_properties:
+            existing_properties[key] = value
+
+        else:
+            existing_properties[key] = merge_property_value(
+                existing_properties[key],
+                value,
+            )
+
+    return existing_properties
+
+
 def merge_entity(store, entity, provenance):
+
     name = normalize_name(
-    entity.get("name") or entity.get("canonical_name", "")
-)
+        entity.get("name") or entity.get("canonical_name", "")
+    )
 
     et = entity["entity_type"]
     key = entity_key(name, et)
@@ -36,11 +92,52 @@ def merge_entity(store, entity, provenance):
 
     item = store[key]
 
+    # ---------------------------------------------------------
+    # DESCRIPTION
+    # ---------------------------------------------------------
+
     description = entity.get("description", "").strip()
+
     if description and not item["description"]:
         item["description"] = description
 
+    # ---------------------------------------------------------
+    # EXTRACTED PROPERTIES
+    # ---------------------------------------------------------
+
+    incoming_properties = entity.get("properties", {})
+
+    merge_properties(
+        item["properties"],
+        incoming_properties,
+    )
+
+    # ---------------------------------------------------------
+    # PROVENANCE
+    # ---------------------------------------------------------
+
     evidence = entity.get("evidence", "").strip()
+
+    provenance_properties = {
+        "document": provenance["document"],
+        "document_file": provenance["document_file"],
+        "page": provenance["page"],
+        "clause": provenance.get("clause", ""),
+        "section_title": provenance.get("section_title", ""),
+        "chunk_id": provenance["chunk_id"],
+        "evidence": evidence,
+    }
+
+    merge_properties(
+        item["properties"],
+        {
+            "provenance": provenance_properties
+        },
+    )
+
+    # ---------------------------------------------------------
+    # SOURCE MENTION
+    # ---------------------------------------------------------
 
     mention = {
         "document": provenance["document"],
@@ -59,15 +156,21 @@ def merge_entity(store, entity, provenance):
 
 
 def add_aliases(store):
+
     for item in store.values():
+
         aliases = set(item["aliases"])
         canonical = item["canonical_name"]
 
         for mention in item["source_mentions"]:
+
             evidence = mention.get("evidence", "")
-            # Alias discovery is intentionally conservative; do not manufacture
-            # aliases from arbitrary evidence.
+
+            # Alias discovery is intentionally conservative.
             if evidence == canonical:
                 continue
 
-        item["aliases"] = sorted(a for a in aliases if a != canonical)
+        item["aliases"] = sorted(
+            a for a in aliases
+            if a != canonical
+        )
