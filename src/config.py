@@ -1,19 +1,19 @@
 from pathlib import Path
-import os
+from dotenv import load_dotenv
 
-ROOT = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
-PDF_DIR = ROOT / "data" / "pdfs"
-CHUNKS_FILE = ROOT / "data" / "chunks" / "chunks.json"
-RAW_EXTRACTION_FILE = ROOT / "data" / "extraction" / "extraction_raw.json"
-VALIDATED_EXTRACTION_FILE = ROOT / "data" / "extraction" / "extraction_validated.json"
-GRAPH_FILE = ROOT / "data" / "graph" / "graph_data.json"
-SCHEMA_FILE = ROOT / "schema" / "3gpp_schema_fixed.json"
 
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen2.5:14b")
+SCHEMA_FILE = BASE_DIR / "schema" / "3gpp_schema.json"
 
-VALIDATED_EXTRACTION_FILE = ROOT / "out" / "graph_extraction_with_relationships.json"
+
+PDF_DIR = BASE_DIR / os.getenv("PDF_DIR", "pdfs")
+
+OUTPUT_DIR = BASE_DIR / os.getenv("OUTPUT_DIR", "output")
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USER = os.getenv("NEO4J_USER")

@@ -2,6 +2,7 @@ llama-index
 llama-index-llms-openai
 llama-index-graph-stores-neo4j
 llama-parse
+ollama
 
 neo4j
 
@@ -10,3 +11,9 @@ pydantic
 
 tiktoken
 pypdf
+
+sentence-transformers
+transformers 
+torch 
+numpy
+qdrant-client
