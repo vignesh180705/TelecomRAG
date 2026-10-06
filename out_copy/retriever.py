@@ -1,7 +1,7 @@
 import os
 import sys
 from collections import OrderedDict
-
+import dotenv
 import requests
 from neo4j import GraphDatabase
 from groq import Groq
@@ -32,10 +32,10 @@ GRAPH_HOPS = 1
 # ENV
 # ============================================================
 
-NEO4J_URI = os.getenv("NEO4J_URI")
-NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
-NEO4J_DATABASE = os.getenv("NEO4J_DATABASE")
+NEO4J_URI=os.getenv("NEO4J_URI")
+NEO4J_USERNAME=os.getenv("NEO4J_USERNAME")
+NEO4J_PASSWORD=os.getenv("NEO4J_PASSWORD")
+NEO4J_DATABASE=os.getenv("NEO4J_DATABASE")
 
 
 # ============================================================
