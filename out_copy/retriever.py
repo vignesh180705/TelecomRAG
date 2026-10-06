@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import sys
 from collections import OrderedDict
-
+import dotenv
 import requests
 from neo4j import GraphDatabase
 from groq import Groq
