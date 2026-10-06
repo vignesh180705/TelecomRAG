@@ -1,86 +1,39 @@
 import os
+from dotenv import load_dotenv
 import sys
 from collections import OrderedDict
 
 import requests
 from neo4j import GraphDatabase
 from groq import Groq
-
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
-
-
-# ============================================================
-# CONFIG
-# ============================================================
-
-OLLAMA_URL = "http://localhost:11434/api/embed"
-EMBEDDING_MODEL = "nomic-embed-text"
-
-VECTOR_INDEX_NAME = "chunk_embedding_index"
-
-TOP_K = 4
-
-MAX_CHUNK_CHARS = 3500
-MAX_GRAPH_RELATIONSHIPS = 8
-
-GROQ_MODEL = "openai/gpt-oss-120b"
-GRAPH_HOPS = 1
+load_dotenv()
+GROQ_API_KEY=os.getenv("GROQ_API_KEY")
 
 
-# ============================================================
-# ENV
-# ============================================================
+OLLAMA_URL="http://localhost:11434/api/embed"
+EMBEDDING_MODEL="nomic-embed-text"
+VECTOR_INDEX_NAME="chunk_embedding_index"
 
-NEO4J_URI = os.getenv("NEO4J_URI")
-NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
-NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
-NEO4J_DATABASE = os.getenv("NEO4J_DATABASE")
+TOP_K=10
 
+MAX_CHUNK_CHARS=3500
+MAX_GRAPH_RELATIONSHIPS=8
 
-# ============================================================
-# EMBEDDING
-# ============================================================
+GROQ_MODEL="openai/gpt-oss-120b"
+GRAPH_DEPTH=2
 
-def embed_query(query):
-
-    response = requests.post(
-        OLLAMA_URL,
-        json={
-            "model": EMBEDDING_MODEL,
-            "input": query,
-            "keep_alive": "10m",
-        },
-        timeout=120,
-    )
-
-    response.raise_for_status()
-
-    data = response.json()
-
-    embeddings = data.get(
-        "embeddings"
-    )
-
-    if not embeddings:
-        raise RuntimeError(
-            f"Ollama returned no embedding:\n{data}"
-        )
-
-    return embeddings[0]
-
-
-# ============================================================
-# VECTOR SEARCH
-# ============================================================
-
-VECTOR_SEARCH_QUERY = """
-CALL db.index.vector.queryNodes(
-    $index_name,
-    $top_k,
-    $query_vector
+NEO4J_URI=os.getenv("NEO4J_URI")
+NEO4J_USERNAME=os.getenv("NEO4J_USERNAME")
+NEO4J_PASSWORD=os.getenv("NEO4J_PASSWORD")
+NEO4J_DATABASE=os.getenv("NEO4J_DATABASE")
+VECTOR_SEARCH_QUERY="""
+MATCH (node)
+SEARCH node IN (
+    VECTOR INDEX chunk_embedding_index
+    FOR $query_vector
+    LIMIT $top_k
 )
-YIELD node, score
+SCORE AS score
 
 RETURN
     node.chunk_id AS chunk_id,
@@ -94,292 +47,204 @@ RETURN
 ORDER BY score DESC
 """
 
+GRAPH_CONTEXT_QUERY=f"""
+MATCH (c:Chunk {{chunk_id: $chunk_id}})
+MATCH (c)-[:MENTIONS]->(e:Entity)
 
-def vector_search(
-    driver,
-    query_vector
-):
+MATCH path=(e)-[*0..{GRAPH_DEPTH - 1}]-(other:Entity)
 
-    with driver.session(
-        database=NEO4J_DATABASE
-    ) as session:
+UNWIND relationships(path) AS rel
 
-        result = session.run(
-            VECTOR_SEARCH_QUERY,
-            {
-                "index_name":
-                    VECTOR_INDEX_NAME,
-
-                "top_k":
-                    TOP_K,
-
-                "query_vector":
-                    query_vector,
-            }
-        )
-
-        return [
-            dict(record)
-            for record in result
-        ]
-
-
-# ============================================================
-# GRAPH EXPANSION
-# ============================================================
-
-GRAPH_CONTEXT_QUERY = """
-MATCH (c:Chunk {
-    chunk_id: $chunk_id
-})
-
-OPTIONAL MATCH (c)-[:MENTIONS]->(e:Entity)
-
-OPTIONAL MATCH (e)-[r]-(other:Entity)
+WITH DISTINCT
+    startNode(rel) AS source,
+    rel,
+    endNode(rel) AS target
 
 RETURN
-    e.entity_id AS entity_id,
-    e.canonical_name AS entity_name,
-    e.entity_type AS entity_type,
-    e.description AS entity_description,
-    type(r) AS relationship_type,
-    other.entity_id AS other_entity_id,
-    other.canonical_name AS other_entity_name,
-    other.entity_type AS other_entity_type
+    source.entity_id AS source_id,
+    source.canonical_name AS source_name,
+    source.entity_type AS source_type,
+    type(rel) AS relationship_type,
+    target.entity_id AS target_id,
+    target.canonical_name AS target_name,
+    target.entity_type AS target_type
 """
 
-def get_graph_context(
-    driver,
-    chunk_id
-):
+def embed_query(query):
+    response=requests.post(
+        OLLAMA_URL,
+        json={
+            "model": EMBEDDING_MODEL,
+            "input": query,
+            "keep_alive": "10m",
+        },
+        timeout=120,
+    )
 
-    with driver.session(
-        database=NEO4J_DATABASE
-    ) as session:
+    response.raise_for_status()
+    data=response.json()
+    embeddings=data.get("embeddings")
+    if not embeddings:
+        raise RuntimeError(f"Ollama returned no embedding:\n{data}")
+    return embeddings[0]
 
-        result = session.run(
+def vector_search(driver,query_vector):
+    with driver.session(database=NEO4J_DATABASE) as session:
+        result=session.run(
+            VECTOR_SEARCH_QUERY,
+            {
+                "top_k":TOP_K,
+                "query_vector":query_vector
+            }
+        )
+        return [dict(record) for record in result]
+
+def get_graph_context(driver,chunk_id):
+    with driver.session(database=NEO4J_DATABASE) as session:
+        result=session.run(
             GRAPH_CONTEXT_QUERY,
             {
                 "chunk_id": chunk_id
             }
         )
+        return [dict(record) for record in result]
 
-        return [
-            dict(record)
-            for record in result
-        ]
-
-
-# ============================================================
-# CONTEXT BUILDING
-# ============================================================
-
-def build_context(
-    driver,
-    vector_results
-):
-
-    context_blocks = []
-
-    for rank, result in enumerate(
-        vector_results,
-        start=1
-    ):
-
-        chunk_id = result[
-            "chunk_id"
-        ]
-
-        graph_rows = get_graph_context(
-            driver,
-            chunk_id
-        )
-
-        block = []
-
-        block.append(
-            f"===== SOURCE {rank} ====="
-        )
-
-        block.append(
-            f"Chunk ID: {chunk_id}"
-        )
-
+def build_context(driver,vector_results):
+    context_blocks=[]
+    for rank, result in enumerate(vector_results,start=1):
+        chunk_id=result["chunk_id"]
+        #print(chunk_id)
+        graph_rows=get_graph_context(driver,chunk_id)
+        block=[]
+        block.append(f"=====SOURCE {rank} =====")
+        block.append(f"Chunk ID: {chunk_id}")
         block.append(
             f"Document: "
             f"{result.get('document', '')}"
         )
-
         block.append(
             f"Page: "
             f"{result.get('page', '')}"
         )
-
         block.append(
             f"Clause: "
             f"{result.get('clause', '')}"
         )
-
         block.append(
             f"Section: "
             f"{result.get('section_title', '')}"
         )
-
         block.append(
             f"Vector similarity: "
             f"{result.get('score', 0):.4f}"
         )
-
         block.append("")
-
-        # ----------------------------------------------------
-        # ORIGINAL SOURCE CONTENT
-        # ----------------------------------------------------
-
-        block.append(
-            "Source content:"
-        )
-
-        text = result.get(
-            "text",
-            ""
-        )
-
-        text = text[
-            :MAX_CHUNK_CHARS
-        ]
-
+        block.append("Source content:")
+        text=result.get("text","")
+        text=text[:MAX_CHUNK_CHARS]
         block.append(text)
-
-        # ----------------------------------------------------
-        # GRAPH
-        # ----------------------------------------------------
-
         block.append("")
-
-        block.append(
-            "Graph context:"
-        )
-
-        seen_relationships = set()
-
-        relationship_count = 0
-
+        block.append("Graph context:")
+        seen_relationships=set()
+        relationship_count=0
         for row in graph_rows:
+            #print(row)
+            source_name=row.get("source_name") or ""
+            relationship_type=row.get("relationship_type") or ""
+            target_name=row.get("target_name") or ""
 
-            entity_name = (
-                row.get(
-                    "entity_name"
-                )
-                or ""
+            if not (source_name and relationship_type and target_name):
+                continue
+
+            relationship=(
+                f"{source_name} "
+                f"-[{relationship_type}]-> "
+                f"{target_name}"
             )
 
-            relationship_type = (
-                row.get(
-                    "relationship_type"
-                )
-                or ""
-            )
+            if relationship in seen_relationships:
+                continue
 
-            other_name = (
-                row.get(
-                    "other_entity_name"
-                )
-                or ""
-            )
+            block.append(f"- {relationship}")
+            seen_relationships.add(relationship)
 
-            if (
-                entity_name
-                and relationship_type
-                and other_name
-            ):
+            relationship_count+=1
+            if relationship_count >=MAX_GRAPH_RELATIONSHIPS:
+                break
+        context_blocks.append("\n".join(block))
+    #print(context_blocks)
+    return "\n\n".join(context_blocks)
 
-                relationship = (
-                    f"{entity_name} "
-                    f"-[{relationship_type}]-> "
-                    f"{other_name}"
-                )
-
-                if (
-                    relationship
-                    not in seen_relationships
-                ):
-
-                    block.append(
-                        f"- {relationship}"
-                    )
-
-                    seen_relationships.add(
-                        relationship
-                    )
-
-                    relationship_count += 1
-
-                    if (
-                        relationship_count
-                        >= MAX_GRAPH_RELATIONSHIPS
-                    ):
-                        break
-
-        context_blocks.append(
-            "\n".join(block)
-        )
-
-    return "\n\n".join(
-        context_blocks
-    )
-# ============================================================
-# LLM
-# ============================================================
-
-SYSTEM_PROMPT = """
-You are a technical assistant for a 3GPP/telecom
-knowledge base.
-
-Answer the user's question using ONLY the supplied
-retrieved evidence and graph context.
-
-Rules:
-
-1. Do not invent technical facts.
-2. Prefer the retrieved 3GPP evidence over assumptions.
-3. Use graph relationships to connect concepts when
-   they are supported by the supplied context.
-4. If the evidence is insufficient, explicitly say so.
-5. Mention the relevant specification, page, clause,
-   or section when available.
-6. Give a concise but technically clear answer.
-"""
-
-
-def generate_answer(
-    question,
-    context
-):
-
+def generate_answer(question,options,context):
     if not GROQ_API_KEY:
+        raise RuntimeError("GROQ_API_KEY is not set")
 
-        raise RuntimeError(
-            "GROQ_API_KEY is not set"
-        )
+    client=Groq(api_key=GROQ_API_KEY)
+    if not options:
+        user_prompt=f"""
+        Question:
+        {question}
 
-    client = Groq(
-        api_key=GROQ_API_KEY
-    )
+        Retrieved knowledge:
 
-    user_prompt = f"""
-Question:
-{question}
+        {context}
 
-Retrieved knowledge:
+        Answer the question using only the retrieved
+        source content and graph context.
+        """
 
-{context}
+        SYSTEM_PROMPT="""
+        You are a technical assistant for a 3GPP/telecom
+        knowledge base.
 
-Answer the question using only the retrieved
-source content and graph context.
-"""
+        Answer the user's question using ONLY the supplied
+        retrieved evidence and graph context.
 
-    response = client.chat.completions.create(
+        Rules:
+
+        1. Do not invent technical facts.
+        2. Prefer the retrieved 3GPP evidence over assumptions.
+        3. Use graph relationships to connect concepts when they are supported by the supplied context.
+        4. If the evidence is insufficient, explicitly say so.
+        5. Mention the relevant specification, page, clause,
+        or section when available.
+        6. Give a concise but technically clear answer.
+        """
+
+    else:
+        user_prompt=f"""
+        Question:
+        {question}
+
+        Options:
+        1. {options[0]}
+        2. {options[1]}
+        3. {options[2]}
+        4. {options[3]}
+        
+        Retrieved knowledge:
+
+        {context}
+
+        Answer the question using only the retrieved source content and graph context.
+        Answer ONLY with the choice number
+        """
+
+        SYSTEM_PROMPT="""
+        You are a technical assistant for a 3GPP/telecom
+        knowledge base.
+
+        Answer the user's question using ONLY the supplied
+        retrieved evidence and graph context.
+
+        Rules:
+
+        1. Do not invent technical facts.
+        2. Prefer the retrieved 3GPP evidence over assumptions.
+        3. Use graph relationships to connect concepts when they are supported by the supplied context.
+        4. Answer only with the option choice
+        """
+    response=client.chat.completions.create(
         model=GROQ_MODEL,
         messages=[
             {
@@ -396,123 +261,45 @@ source content and graph context.
 
     return response.choices[0].message.content
 
-# ============================================================
-# MAIN
-# ============================================================
-
-def main():
-
-    if len(sys.argv) < 2:
-
-        print(
-            'Usage:\n'
-            'python retriever.py '
-            '"your question here"'
-        )
-
-        sys.exit(1)
-
-    question = " ".join(
-        sys.argv[1:]
-    )
-
-    if not all([
-        NEO4J_URI,
-        NEO4J_USERNAME,
-        NEO4J_PASSWORD,
-        NEO4J_DATABASE,
-    ]):
-
-        print(
-            "Missing Neo4j environment variables."
-        )
-
-        sys.exit(1)
-
-    print()
+def retrieve(question,options=None):
+    '''print()
     print("=" * 70)
     print("TELECOMRAG")
     print("=" * 70)
 
     print()
-    print(
-        f"Question: {question}"
-    )
+    print(f"Question: {question}")
 
-    # --------------------------------------------------------
-    # Query embedding
-    # --------------------------------------------------------
+    print()'''
+    #print("1. Generating query embedding...")
 
-    print()
-    print(
-        "1. Generating query embedding..."
-    )
+    query_vector=embed_query(question)
 
-    query_vector = embed_query(
-        question
-    )
-
-    print(
+    '''print(
         f"   Dimension: "
         f"{len(query_vector)}"
-    )
+    )'''
 
-    # --------------------------------------------------------
-    # Neo4j
-    # --------------------------------------------------------
-
-    driver = GraphDatabase.driver(
+    driver=GraphDatabase.driver(
         NEO4J_URI,
         auth=(
             NEO4J_USERNAME,
             NEO4J_PASSWORD
         )
     )
-
+    answer=""
     try:
-
         driver.verify_connectivity()
-
-        # ----------------------------------------------------
-        # Vector search
-        # ----------------------------------------------------
-
-        print()
-        print(
-            "2. Searching Neo4j vector index..."
-        )
-
-        results = vector_search(
-            driver,
-            query_vector
-        )
-
+        #print()
+        #print("2. Searching Neo4j vector index...")
+        results=vector_search(driver,query_vector)
         if not results:
-
-            print(
-                "No vector results found."
-            )
-
+            print("No vector results found.")
             return
-
-        print(
-            f"Retrieved {len(results)} Chunk nodes."
-        )
-
-        # ----------------------------------------------------
-        # Display retrieved evidence
-        # ----------------------------------------------------
-
-        print()
-        print(
-            "3. Retrieved evidence:"
-        )
-
-        for i, result in enumerate(
-            results,
-            start=1
-        ):
-
+        '''print(f"Retrieved {len(results)} Chunk nodes.")
+        print()'''
+        #print("3. Retrieved evidence:")
+        '''for i, result in enumerate(results,start=1):
             print()
             print(
                 f"[{i}] "
@@ -521,66 +308,55 @@ def main():
                 f"| score "
                 f"{result['score']:.4f}"
             )
-
             print(
                 f"    chunk: "
                 f"{result['chunk_id']}"
             )
-
-            print(
-                f"    {result['text'][:300]}"
-            )
-
-        # ----------------------------------------------------
-        # Graph expansion
-        # ----------------------------------------------------
-
-        print()
-        print(
-            "4. Expanding graph context..."
-        )
-        
-        context = build_context(
-            driver,
-            results
-        )
-        print("\n================ GRAPH CONTEXT ================")
+            print(f"    {result['text'][:300]}")
+        print()'''
+        #print("4. Expanding graph context...")
+        context=build_context(driver,results)
+        '''print("\n================GRAPH CONTEXT ================")
         print(context)
-        print("================================================")
-        # LLM
-        # ----------------------------------------------------
-
-        print()
+        print("================================================")'''
+        '''print()
         print(
             "5. Generating answer with "
             f"{GROQ_MODEL}..."
-        )
+        )'''
 
-        answer = generate_answer(
-            question,
-            context
-        )
-        print("\n================ FINAL LLM CONTEXT ================")
-        print(context)
-        print("====================================================")
-        # ----------------------------------------------------
-        # Output
-        # ----------------------------------------------------
+        answer=generate_answer(question,options,context)
 
-        print()
-        print("=" * 70)
-        print("ANSWER")
-        print("=" * 70)
-        print()
-        print(answer)
-
-        print()
-        print("=" * 70)
+    except Exception as e:
+        print(e)
 
     finally:
-
         driver.close()
+    return answer
 
+def main():
+    if len(sys.argv)<2:
+        print(
+            'Usage:\n'
+            'python retriever.py '
+            '"your question here"'
+        )
+        sys.exit(1)
 
-if __name__ == "__main__":
+    question=" ".join(sys.argv[1:])
+    answer=retrieve(question)
+    print(answer)
+    '''print("\n================FINAL LLM CONTEXT ================")
+    print("ANSWER")
+    print("=" * 70)
+    print()
+    print(answer)
+
+    print()
+    print("=" * 70)'''
+    if not all([NEO4J_URI,NEO4J_USERNAME,NEO4J_PASSWORD,NEO4J_DATABASE,]):
+        print("Missing Neo4j environment variables.")
+        sys.exit(1)
+
+if __name__ =="__main__":
     main()
