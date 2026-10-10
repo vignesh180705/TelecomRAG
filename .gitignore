@@ -37,3 +37,10 @@ out_copy/chunk_embeddings.json
 
 .\evaluation\data
 .\evaluation\3GPP-QA-MultipleChoice
+
+out_copy/final_extraction_combined_sorted.json
+out_copy/chunk_embeddings.json
+out_copy/graph_data.json
+
+
+out_copy/don't

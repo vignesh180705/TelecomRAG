@@ -101,6 +101,35 @@ def batches(items, size):
         yield items[i:i + size]
 
 
+def remove_old_relationship_mentions(driver):
+    print("Removing old RelationshipMention nodes...")
+
+    query = """
+    MATCH (s:RelationshipMention)
+    WITH s
+    LIMIT $batch_size
+    DETACH DELETE s
+    RETURN count(*) AS deleted
+    """
+
+    total_deleted = 0
+
+    with driver.session(database=NEO4J_DATABASE) as session:
+        while True:
+            result = session.run(
+                query,
+                {"batch_size": 500}
+            )
+            deleted = result.single()["deleted"]
+            total_deleted += deleted
+
+            if deleted == 0:
+                break
+
+    print(f"Removed {total_deleted} old nodes.")
+
+
+
 # ============================================================
 # LOAD JSON
 # ============================================================
@@ -931,21 +960,14 @@ def main():
     )
     entities = prepare_entities(graph)
 
-    source_mentions = prepare_source_mentions(
-        graph,
-        embedding_data
-    )
+    #source_mentions = prepare_source_mentions(graph,embedding_data)
 
     relationships = graph.get(
         "relationships",
         []
     )
 
-    relationship_mentions = (
-        prepare_relationship_mentions(
-            relationships
-        )
-    )
+    #relationship_mentions = (prepare_relationship_mentions(relationships))
 
     dimensions = embedding_data.get(
         "dimension"
@@ -964,20 +986,20 @@ def main():
         f"Entities            : {len(entities)}"
     )
 
-    print(
-        f"Source mentions     : "
-        f"{len(source_mentions)}"
-    )
+    #print(
+       # f"Source mentions     : "
+       # f"{len(source_mentions)}"
+    #)
 
     print(
         f"Relationships       : "
         f"{len(relationships)}"
     )
 
-    print(
-        f"Relationship mentions: "
-        f"{len(relationship_mentions)}"
-    )
+    #print(
+        #f"Relationship mentions: "
+       # f"{len(relationship_mentions)}"
+    #)
 
     print(
         f"Embedding dimension : {dimensions}"
@@ -1037,20 +1059,20 @@ def main():
             chunk_entity_links
         )
 
-        load_source_mentions(
-            driver,
-            source_mentions
-        )
+        #load_source_mentions(
+            #driver,
+           # source_mentions
+        #)
 
         load_relationships(
             driver,
             relationships
         )
 
-        load_relationship_mentions(
-            driver,
-            relationship_mentions
-        )
+        #load_relationship_mentions(
+           # driver,
+           # relationship_mentions
+        #)
 
         # ----------------------------------------------------
         # Vector index
