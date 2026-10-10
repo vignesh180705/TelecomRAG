@@ -1,11 +1,3 @@
-"""
-graph_extraction_with_relationships.json -> graph_data.json
-
-Builds the final normalized graph representation.
-
-No Neo4j, LLM, PDF or extraction happens here.
-"""
-
 import json
 import sys
 
@@ -49,7 +41,29 @@ def main():
         sys.exit(1)
 
     print(f"Input chunks: {len(chunks)}")
+    for i, chunk in enumerate(chunks):
+        if not isinstance(chunk, dict):
+            print(f"Invalid chunk at index {i}: {type(chunk)}")
+            print(repr(chunk)[:1000])
+            break
 
+        chunk_entities = chunk.get("entities", [])
+
+        if isinstance(chunk_entities, dict):
+            print("Entities are stored as a dictionary.")
+            print("Sample:", repr(list(chunk_entities.items())[:2]))
+            break
+
+        if isinstance(chunk_entities, list):
+            for j, entity in enumerate(chunk_entities):
+                if not isinstance(entity, dict):
+                    print(f"Invalid entity at chunk {i}, entity {j}")
+                    print("Type:", type(entity))
+                    print("Value:", repr(entity))
+                    break
+            else:
+                continue
+            break
     entities = {}
     relationships = {}
 
