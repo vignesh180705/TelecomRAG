@@ -9,12 +9,9 @@ from groq import Groq
 load_dotenv()
 GROQ_API_KEY=os.getenv("GROQ_API_KEY")
 
-
 OLLAMA_URL="http://localhost:11434/api/embed"
 EMBEDDING_MODEL="nomic-embed-text"
 VECTOR_INDEX_NAME="chunk_embedding_index"
-
-TOP_K=10
 
 MAX_CHUNK_CHARS=3500
 MAX_GRAPH_RELATIONSHIPS=8
@@ -88,7 +85,7 @@ def embed_query(query):
         raise RuntimeError(f"Ollama returned no embedding:\n{data}")
     return embeddings[0]
 
-def vector_search(driver,query_vector):
+def vector_search(driver,query_vector,TOP_K=5):
     with driver.session(database=NEO4J_DATABASE) as session:
         result=session.run(
             VECTOR_SEARCH_QUERY,
@@ -175,7 +172,7 @@ def build_context(driver,vector_results):
     #print(context_blocks)
     return "\n\n".join(context_blocks)
 
-def generate_answer(question,options,context):
+def generate_answer(question,options,context,GROQ_API_KEY=GROQ_API_KEY):
     if not GROQ_API_KEY:
         raise RuntimeError("GROQ_API_KEY is not set")
 
@@ -188,17 +185,13 @@ def generate_answer(question,options,context):
         Retrieved knowledge:
 
         {context}
-
-        Answer the question using only the retrieved
-        source content and graph context.
         """
 
         SYSTEM_PROMPT="""
         You are a technical assistant for a 3GPP/telecom
         knowledge base.
 
-        Answer the user's question using ONLY the supplied
-        retrieved evidence and graph context.
+        Answer the user's question using the supplied retrieved evidence and graph context as additional knowledge.
 
         Rules:
 
@@ -226,23 +219,21 @@ def generate_answer(question,options,context):
 
         {context}
 
-        Answer the question using only the retrieved source content and graph context.
-        Answer ONLY with the choice number
+
         """
 
         SYSTEM_PROMPT="""
         You are a technical assistant for a 3GPP/telecom
         knowledge base.
 
-        Answer the user's question using ONLY the supplied
-        retrieved evidence and graph context.
+        Answer the user's question using the supplied retrieved evidence and graph context as additional knowledge.
+
 
         Rules:
 
         1. Do not invent technical facts.
-        2. Prefer the retrieved 3GPP evidence over assumptions.
-        3. Use graph relationships to connect concepts when they are supported by the supplied context.
-        4. Answer only with the option choice
+        2. Use graph relationships to connect concepts when they are supported by the supplied context.
+        3. Answer only with the option choice
         """
     response=client.chat.completions.create(
         model=GROQ_MODEL,
@@ -261,7 +252,7 @@ def generate_answer(question,options,context):
 
     return response.choices[0].message.content
 
-def retrieve(question,options=None):
+def retrieve(question,top_k,options=None,groq_api_key=GROQ_API_KEY):
     '''print()
     print("=" * 70)
     print("TELECOMRAG")
@@ -292,7 +283,7 @@ def retrieve(question,options=None):
         driver.verify_connectivity()
         #print()
         #print("2. Searching Neo4j vector index...")
-        results=vector_search(driver,query_vector)
+        results=vector_search(driver,query_vector,top_k)
         if not results:
             print("No vector results found.")
             return
@@ -325,14 +316,14 @@ def retrieve(question,options=None):
             f"{GROQ_MODEL}..."
         )'''
 
-        answer=generate_answer(question,options,context)
+        answer=generate_answer(question,options,context,groq_api_key)
 
     except Exception as e:
         print(e)
 
     finally:
         driver.close()
-    return answer
+    return answer,context
 
 def main():
     if len(sys.argv)<2:
