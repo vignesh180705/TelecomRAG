@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 
 # ============================================================
@@ -7,6 +8,7 @@ import os
 # ============================================================
 
 ROOT = Path(__file__).resolve().parents[1]
+load_dotenv(ROOT / ".env", override=True)
 
 
 # ============================================================
@@ -54,21 +56,21 @@ OLLAMA_MODEL = os.getenv(
 
 NEO4J_URI = os.getenv(
     "NEO4J_URI",
-    "neo4j+s://d1bdd9d0.databases.neo4j.io",
+    "error",
 )
 
 NEO4J_USERNAME = os.getenv(
     "NEO4J_USERNAME",
-    "d1bdd9d0",
+    "error",
 )
 
 NEO4J_PASSWORD = os.getenv(
     "NEO4J_PASSWORD",
-    "Jl-HyytoHNh71uKrzLCECs7CeQS6mcuttUgwxdvBEFc",
+    "error",
 )
 NEO4J_DATABASE = os.getenv(
     "NEO4J_DATABASE",
-    "d1bdd9d0",
+    "error",
 )
 
 # ============================================================
@@ -109,3 +111,6 @@ ALLOWED_ENTITY_TYPES = [
     "ANALYTICS_CONCEPT",
     "CONCEPT",
 ]
+
+print("Loaded database:", repr(NEO4J_DATABASE))
+print("Loaded .env from:", ROOT)
