@@ -309,6 +309,7 @@ def create_evaluation_dataset(records):
             "option 2": item.get("option 2", ""),
             "option 3": item.get("option 3", ""),
             "option 4": item.get("option 4", ""),
+            "option 5": item.get("option 5", ""),
             "category": item.get("category", ""),
         }
 

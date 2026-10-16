@@ -6,6 +6,7 @@ import dotenv
 import requests
 from neo4j import GraphDatabase
 from groq import Groq
+import time
 load_dotenv()
 GROQ_API_KEY=os.getenv("GROQ_API_KEY")
 
@@ -106,39 +107,40 @@ def get_graph_context(driver,chunk_id):
         )
         return [dict(record) for record in result]
 
-def build_context(driver,vector_results):
+def build_context(driver,vector_results,isUserQuery=True):
     context_blocks=[]
     for rank, result in enumerate(vector_results,start=1):
         chunk_id=result["chunk_id"]
         #print(chunk_id)
         graph_rows=get_graph_context(driver,chunk_id)
         block=[]
-        block.append(f"=====SOURCE {rank} =====")
-        block.append(f"Chunk ID: {chunk_id}")
-        block.append(
-            f"Document: "
-            f"{result.get('document', '')}"
-        )
-        block.append(
-            f"Page: "
-            f"{result.get('page', '')}"
-        )
-        block.append(
-            f"Clause: "
-            f"{result.get('clause', '')}"
-        )
-        block.append(
-            f"Section: "
-            f"{result.get('section_title', '')}"
-        )
-        block.append(
-            f"Vector similarity: "
-            f"{result.get('score', 0):.4f}"
-        )
-        block.append("")
+        block.append(f"SOURCE {rank}")
+        if isUserQuery:
+            block.append(f"Chunk ID: {chunk_id}")
+            block.append(
+                f"Document: "
+                f"{result.get('document', '')}"
+            )
+            block.append(
+                f"Page: "
+                f"{result.get('page', '')}"
+            )
+            block.append(
+                f"Clause: "
+                f"{result.get('clause', '')}"
+            )
+            block.append(
+                f"Section: "
+                f"{result.get('section_title', '')}"
+            )
+            block.append(
+                f"Vector similarity: "
+                f"{result.get('score', 0):.4f}"
+            )
+            block.append("")
         block.append("Source content:")
         text=result.get("text","")
-        text=text[:MAX_CHUNK_CHARS]
+        #text=text[:MAX_CHUNK_CHARS]
         block.append(text)
         block.append("")
         block.append("Graph context:")
@@ -214,26 +216,22 @@ def generate_answer(question,options,context,GROQ_API_KEY=GROQ_API_KEY):
         2. {options[1]}
         3. {options[2]}
         4. {options[3]}
-        
+        {("5. "+options[4]) if (options[4]) else ""}
         Retrieved knowledge:
 
         {context}
-
-
         """
 
         SYSTEM_PROMPT="""
-        You are a technical assistant for a 3GPP/telecom
-        knowledge base.
-
-        Answer the user's question using the supplied retrieved evidence and graph context as additional knowledge.
-
-
+        You are a technical assistant for a telecom knowledge base.
+        Answer the question using the given context and your own knowledge for additional help.
+        If the give context doesn't help use your internal knowledge
         Rules:
 
-        1. Do not invent technical facts.
-        2. Use graph relationships to connect concepts when they are supported by the supplied context.
-        3. Answer only with the option choice
+        1. Use graph relationships to connect concepts when they are supported by the supplied context.
+        2. Select the SINGLE best option (ONLY from 1,2,3,4,5).
+        3. Output only the option number, with no explanation.
+        4. If answer is unknown pick an option from 1,2,3,4,5 which is likely to be the correct choice
         """
     response=client.chat.completions.create(
         model=GROQ_MODEL,
@@ -247,7 +245,7 @@ def generate_answer(question,options,context,GROQ_API_KEY=GROQ_API_KEY):
                 "content": user_prompt
             }
         ],
-        temperature=0.2,
+        temperature=0
     )
 
     return response.choices[0].message.content
@@ -263,7 +261,7 @@ def retrieve(question,top_k,options=None,groq_api_key=GROQ_API_KEY):
 
     print()'''
     #print("1. Generating query embedding...")
-
+    start_time = time.perf_counter()
     query_vector=embed_query(question)
 
     '''print(
@@ -306,7 +304,11 @@ def retrieve(question,top_k,options=None,groq_api_key=GROQ_API_KEY):
             print(f"    {result['text'][:300]}")
         print()'''
         #print("4. Expanding graph context...")
-        context=build_context(driver,results)
+        context=""
+        if options:
+            context=build_context(driver,results,False)
+        else:
+            context=build_context(driver,results)
         '''print("\n================GRAPH CONTEXT ================")
         print(context)
         print("================================================")'''
@@ -315,15 +317,15 @@ def retrieve(question,top_k,options=None,groq_api_key=GROQ_API_KEY):
             "5. Generating answer with "
             f"{GROQ_MODEL}..."
         )'''
-
+        retrieval_time = time.perf_counter() - start_time
         answer=generate_answer(question,options,context,groq_api_key)
 
     except Exception as e:
-        print(e)
-
+        #print(e)
+        raise
     finally:
         driver.close()
-    return answer,context
+    return answer,context,retrieval_time
 
 def main():
     if len(sys.argv)<2:
@@ -335,16 +337,17 @@ def main():
         sys.exit(1)
 
     question=" ".join(sys.argv[1:])
-    answer=retrieve(question)
-    print(answer)
-    '''print("\n================FINAL LLM CONTEXT ================")
-    print("ANSWER")
+    answer,c,r=retrieve(question,5)
+    #print(answer)
+    print("\n================FINAL LLM CONTEXT ================")
+    print(c)
+    print("\n================ANSWER================")
     print("=" * 70)
     print()
     print(answer)
 
     print()
-    print("=" * 70)'''
+    print("=" * 70)
     if not all([NEO4J_URI,NEO4J_USERNAME,NEO4J_PASSWORD,NEO4J_DATABASE,]):
         print("Missing Neo4j environment variables.")
         sys.exit(1)

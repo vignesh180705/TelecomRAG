@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e1015">
+  <meta name="description" content="A source-grounded assistant for 3GPP and telecom specifications, powered by vector search and a Neo4j property graph.">
+  <title>3GPP Specification Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="page-header">
+      <div class="eyebrow">TELECOM KNOWLEDGE BASE</div>
+      <h1>3GPP Specification Assistant</h1>
+      <p class="subtitle">Ask questions about 3GPP releases using natural language. Answers are grounded in retrieved specification text and property-graph context, with source references when available.</p>
+      <div class="system-note" id="systemNote" role="status" aria-live="polite">
+        <span class="status-line"></span>
+        <span id="statusText">Checking server configuration…</span>
+      </div>
+    </header>
+
+    <section class="conversation" aria-label="Conversation" id="conversation">
+      <div class="welcome" id="welcome">
+        <div class="welcome-rule"></div>
+        <div class="welcome-kicker">START A CONVERSATION</div>
+        <h2>What would you like to know?</h2>
+        <p>Ask about network functions, interfaces, procedures, parameters, QoS, or requirements defined in the standards.</p>
+        <div class="prompt-grid">
+          <button class="prompt-card" type="button" data-prompt="What are the supported modulation orders for PDSCH in NR?">
+            <span class="prompt-title">PDSCH modulation orders</span>
+            <span class="prompt-desc">Find modulation support and conditions</span>
+          </button>
+          <button class="prompt-card" type="button" data-prompt="What subcarrier spacing values are defined for NR numerology?">
+            <span class="prompt-title">NR numerology</span>
+            <span class="prompt-desc">Look up defined subcarrier spacing</span>
+          </button>
+          <button class="prompt-card" type="button" data-prompt="What is the role of the AMF in a 5G system?">
+            <span class="prompt-title">AMF responsibilities</span>
+            <span class="prompt-desc">Explore network functions and relationships</span>
+          </button>
+          <button class="prompt-card" type="button" data-prompt="Explain how a PDU session is established and which network functions are involved.">
+            <span class="prompt-title">PDU session establishment</span>
+            <span class="prompt-desc">Trace a procedure across entities</span>
+          </button>
+        </div>
+      </div>
+      <div id="messages" class="messages"></div>
+    </section>
+
+    <form id="chatForm" class="composer" autocomplete="off">
+      <label for="questionInput" class="sr-only">Ask a question about 3GPP specifications</label>
+      <textarea id="questionInput" name="question" rows="1" maxlength="4000" placeholder="Ask a question about 3GPP specifications…" required></textarea>
+      <div class="composer-bottom">
+        <div class="composer-hint">Answers use retrieved evidence. Verify critical details against the cited standard.</div>
+        <div class="composer-actions">
+          <label class="topk-label" for="topK">Sources</label>
+          <select id="topK" aria-label="Number of source chunks" title="Number of source chunks to retrieve">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+          </select>
+          <button id="sendButton" class="send-button" type="submit"><span id="sendLabel">Ask</span><span class="send-arrow" aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </form>
+    <footer class="page-footer">
+      <span>3GPP SPECIFICATION ASSISTANT</span><span>VECTOR RETRIEVAL · PROPERTY GRAPH CONTEXT</span>
+    </footer>
+  </main>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
